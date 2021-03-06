@@ -1,15 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <router-link to="/">Home</router-link> |
+  
+  <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  components: {
-    HelloWorld
-  }
+  name: 'App',
 }
 
 // This starter template is using Vue 3 experimental <script setup> SFCs

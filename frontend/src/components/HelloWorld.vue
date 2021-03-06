@@ -16,17 +16,18 @@
 <script>
 export default {
   name: 'HelloWorld',
+  
   props: {
     msg: {
       type: String,
     }
   },
+
   data () {
     return {
       count: 0
     }
   }
-
 }
 </script>
 
