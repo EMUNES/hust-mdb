@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ msg }}</h1>
+  <h1>{{ testMsg }}</h1>
 
   <p>
     <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a> |
@@ -25,7 +25,8 @@ export default {
 
   data () {
     return {
-      count: 0
+      count: 0,
+      testMsg: this.$store.state.msg
     }
   }
 }
