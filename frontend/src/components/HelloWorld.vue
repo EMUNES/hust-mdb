@@ -6,21 +6,28 @@
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
 
-  <button @click="state.count++">count is: {{ state.count }}</button>
+  <button @click="count++">count is: {{ count }}</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
 
-<script setup>
-import { defineProps, reactive } from 'vue'
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: {
+      type: String,
+    }
+  },
+  data () {
+    return {
+      count: 0
+    }
+  }
 
-defineProps({
-  msg: String
-})
-
-const state = reactive({ count: 0 })
+}
 </script>
 
 <style scoped>
