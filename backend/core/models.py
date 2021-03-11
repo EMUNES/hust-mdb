@@ -63,3 +63,7 @@ class Material(models.Model):
     MFR_temperature = FloatField(db_column="MFR温度", verbose_name="MFR温度", null=True, blank=True) 
     MFR_loading = FloatField(db_column="MFR载入", verbose_name="MFR载入", null=True, blank=True)
     measured_MFR = FloatField(db_column="测量的MFR", verbose_name="测量的MFR", null=True, blank=True)
+
+    class Meta:
+        db_table = "test"
+        managed = False
