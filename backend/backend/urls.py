@@ -20,6 +20,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+# Core API.
 urlpatterns += [
     path("", include("core.urls"))
+]
+
+# DFR user login system.
+urlpatterns += [
+    path("auth/", include('rest_framework.urls'))
 ]
