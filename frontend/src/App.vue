@@ -1,6 +1,13 @@
 <template>
-  <router-link to="/">你好！</router-link> |
-  <router-link to="/materials"></router-link>
+  <router-link to="/">
+    首页
+  </router-link> | 
+
+
+  <router-link to="/materials">
+    热塑性材料信息
+  </router-link>
+  
   <router-view />
 </template>
 
