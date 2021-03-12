@@ -1,5 +1,6 @@
 <template>
   <h1>{{ testMsg }}</h1>
+  <h2 class="text-red-500">tailwind is working!</h2>
 
   <p>
     <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a> |
