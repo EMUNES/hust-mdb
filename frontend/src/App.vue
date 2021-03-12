@@ -1,6 +1,6 @@
 <template>
-  <router-link to="/">Hello</router-link> |
-  
+  <router-link to="/">你好！</router-link> |
+  <router-link to="/materials"></router-link>
   <router-view />
 </template>
 
