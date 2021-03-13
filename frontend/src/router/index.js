@@ -15,7 +15,13 @@ const routes = [
         name: 'Materials',
         component: Materials
 
-    }
+    },
+    // {
+    //     path: '/materials/<int:pk>',
+    //     name: 'Materials',
+    //     component: Materials,
+    //     props: true
+    // }
 ]
 
 const router = createRouter({history, routes})
