@@ -1,16 +1,13 @@
 <template>
   <material-list :events="events"></material-list>
-  <div>
-    <button v-if="page > 1" @click="pageDown">|-|</button>
-    <span>current page: {{page}}</span>
-    <button @click="pageUp">|+|</button>
-  </div>
+  <Paginator :totalPages="totalPages" @page-updated="updateRequestPage" />
 </template>
 
 <script>
 import axios from '../request/axios.js';
 import MaterialList from '../components/materials/MaterialList.vue'
-import { onBeforeMount, ref } from 'vue';
+import Paginator from '../components/Paginator.vue'
+import { onBeforeMount, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -18,40 +15,47 @@ export default {
 
   components: {
     MaterialList,
+    Paginator
   },
 
-  setup() {
-    const page = ref(1)
+  setup(_, context) {
+    const requestPage = ref(1)
+    const totalPages = ref(0)
     const events = ref([])
     const store = useStore()
 
-    const pageDown = () => {
-      page.value -= 1
-    }
-
-    const pageUp = () => {
-      page.value += 1
+    const updateRequestPage = (e) => {
+      requestPage.value = e.page.value
     }
 
     onBeforeMount(() => {
       axios.get(store.state.backendAPIs.coreAPI, {
-        headers: {
-
-        }
+        headers: {}
       })
         .then(res => {
           events.value = res.data.results
+          totalPages.value = res.data.total_pages
         })
           .catch(err => {console.error(err)})
     })
 
+    watch (requestPage, (newValue, _) => {
+      axios.get(store.state.backendAPIs.coreAPI + `?page=${newValue}`, {
+        headers: {}
+      })
+        .then(res => {
+          events.value = res.data.results
+        })
+          .catch(err => {console.log(err)})
+    })
+
     return {
-      page,
+      requestPage,
+      totalPages,
       events,
-      pageDown,
-      pageUp
+      updateRequestPage
     }
-  },
+  }
 }
 </script>
 
