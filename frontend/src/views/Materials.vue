@@ -33,6 +33,7 @@ export default {
         headers: {}
       })
         .then(res => {
+          console.log("request")
           events.value = res.data.results
           totalPages.value = res.data.total_pages
         })

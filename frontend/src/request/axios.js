@@ -10,5 +10,4 @@ export default axios.create({
     xsrfCookieName: 'csrf-token',
     xsrfHeaderName: 'X-CSRFToken',
     withCredentials: true,
-    timeout: 1000
 })
