@@ -145,6 +145,7 @@ export default {
         showLast.value = false
       }
       jump.value = false
+      destPage.value = null
     }
 
     const emitCurrentPage = () => {
