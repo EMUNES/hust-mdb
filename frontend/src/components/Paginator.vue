@@ -15,12 +15,16 @@
           <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
         </svg>
       </a>
-      <a href="javascript: void(0)" v-if="pageCurrent == pageLast"
+      <a href="javascript: void(0)" v-if="pageCurrent == pageLast | pageLast - pageCurrent < 5"  @click="openJump"
       class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-        <span class="sr-only">More</span>
-        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-        </svg>
+        <div v-show="!jump">
+          <span class="sr-only">More</span>
+          <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+        </div>
+        <input type="text" v-show="jump" v-model="destPage" @keypress.enter="finishJump(destPage)"
+        class="h-5 w-8">
       </a>
       <a href="javascript: void(0)" @click="pageTo(pageCurrent)"
       class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
@@ -34,7 +38,7 @@
       class="hidden md:inline-flex relative items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
         {{pageNext2}}
       </a>
-      <a href="javascript: void(0)" v-if="pageCurrent < pageLast" @click="openJump"
+      <a href="javascript: void(0)" v-if="pageCurrent < pageLast & pageLast - pageCurrent >= 5" @click="openJump"
       class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
         <div v-show="!jump">
           <span class="sr-only">More</span>
