@@ -33,3 +33,6 @@ workspace.code-workspace
 
 # Backup folder.
 backup
+
+# TODOs
+TODO.md
