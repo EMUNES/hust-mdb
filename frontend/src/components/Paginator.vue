@@ -17,7 +17,7 @@
       </a>
       <a href="javascript: void(0)" v-if="pageCurrent == pageLast"
       class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-        <span class="sr-only">Middle</span>
+        <span class="sr-only">More</span>
         <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
           <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
         </svg>
@@ -34,12 +34,16 @@
       class="hidden md:inline-flex relative items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
         {{pageNext2}}
       </a>
-      <a href="javascript: void(0)" v-if="pageCurrent < pageLast"
+      <a href="javascript: void(0)" v-if="pageCurrent < pageLast" @click="openJump"
       class="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-        <span class="sr-only">Middle</span>
-        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-        </svg>
+        <div v-show="!jump">
+          <span class="sr-only">More</span>
+          <svg class="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+        </div> 
+        <input type="text" v-show="jump" v-model="destPage" @keypress.enter="finishJump(destPage)"
+        class="h-5 w-8">
       </a>
       <a href="javascript: void(0)" v-if="pageLast1" @click="pageTo(pageLast1)"
       class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
@@ -88,6 +92,8 @@ export default {
     const pageLast1 = ref(0)
     const pageHasGap = ref(false)
     const showLast = ref(false)
+    const jump = ref(false)
+    const destPage = ref(null)
 
     const updatePages = () => {
       // Enough pages for gap (at least 7 pages)?
@@ -169,6 +175,21 @@ export default {
       updatePages()
     }
 
+    const openJump = () => {
+      jump.value = true
+    }
+
+    const finishJump = (dest) => {
+      if (dest >=1 & dest <= pageLast.value) {
+        pageCurrent.value = Number(dest)
+        updatePages()
+      }
+      else {
+        console.log("Page number out of index!!!")
+      }
+      jump.value = false
+    }
+
     watch(pageCurrent, () => {
       updatePages()
       emitCurrentPage()
@@ -182,12 +203,16 @@ export default {
       pageLast1,
       pageHasGap,
       showLast,
+      jump,
+      destPage,
       updatePages,
       pageDown,
       pageUp,
       pageTo,
       toFirstPage,
-      toLastPage
+      toLastPage,
+      openJump,
+      finishJump
     }
   },
 }
