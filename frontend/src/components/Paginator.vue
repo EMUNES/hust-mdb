@@ -140,6 +140,7 @@ export default {
         pageLast1.value = 0
         showLast.value = false
       }
+      jump.value = false
     }
 
     const emitCurrentPage = () => {
@@ -187,7 +188,6 @@ export default {
       else {
         console.log("Page number out of index!!!")
       }
-      jump.value = false
     }
 
     watch(pageCurrent, () => {
