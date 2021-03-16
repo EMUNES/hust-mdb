@@ -10,12 +10,37 @@ export default createStore({
       coreAPI: 'http://127.0.0.1:8000/core/',
       // API for users.
       userAPI: 'http://127.0.0.1:8000/auth/users/',
+      // API for filtering.
+      filterAPI: 'http://127.0.0.1:8000/core/?',
+      filter: {
+        series: '',
+        mark: '' ,
+        manufacturer: '',
+        acronym: '',
+        material_type: '',
+        data_source: '',
+        material_id: '',
+        level_code: '',
+        vendor_code: '',
+        fibre_or_infill: ''
+      },
     },
   },
   
   // sync, mutate state.
   mutations: {
-
+    getFilter(state, payload) {
+      console.log(payload)
+      // Access all filter fields and add them into request url.
+      for (let [key, value] of Object.entries(state.backendAPIs.filter)) {
+        value = payload[key]
+        let filterField = `${key}=${value}&`
+        state.backendAPIs.filterAPI = state.backendAPIs.filterAPI + filterField
+      }
+      
+      //Trim the filter request url.
+      state.backendAPIs.filterAPI = state.backendAPIs.filterAPI.slice(0, -1).trim()
+    }
   }, 
 
   // async, commit mutations.
@@ -23,5 +48,6 @@ export default createStore({
 
   },
   modules: {
+
   }
 })
