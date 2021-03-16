@@ -17,52 +17,52 @@
       </div>
       <div class="m-2">
         <label for="系列">系列: </label>
-        <input type="text" v-model="series" @keypress.enter="submitThis"
+        <input type="text" v-model="series" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="牌号">牌号: </label>
-        <input type="text" v-model="mark" @keypress.enter="submitThis"
+        <input type="text" v-model="mark" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="制造商">制造商: </label>
-        <input type="text" v-model="manufacturer" @keypress.enter="submitThis"
+        <input type="text" v-model="manufacturer" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="材料名称缩写">材料名称缩写: </label>
-        <input type="text" v-model="acronym" @keypress.enter="submitThis"
+        <input type="text" v-model="acronym" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="材料类型">材料类型: </label>
-        <input type="text" v-model="material_type" @keypress.enter="submitThis"
+        <input type="text" v-model="material_type" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="数据来源">数据来源: </label>
-        <input type="text" v-model="data_source" @keypress.enter="submitThis"
+        <input type="text" v-model="data_source" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="材料ID">材料ID: </label>
-        <input type="text" v-model="material_id" @keypress.enter="submitThis"
+        <input type="text" v-model="material_id" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="等级代码">等级代码: </label>
-        <input type="text" v-model="level_code" @keypress.enter="submitThis"
+        <input type="text" v-model="level_code" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="供应商代码">供应商代码: </label>
-        <input type="text" v-model="vendor_code" @keypress.enter="submitThis"
+        <input type="text" v-model="vendor_code" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
         <label for="纤维/填充物">纤维/填充物: </label>
-        <input type="text" v-model="fibre_or_infill" @keypress.enter="submitThis"
+        <input type="text" v-model="fibre_or_infill" @keydown.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
     </form>
