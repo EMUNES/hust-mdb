@@ -1,15 +1,7 @@
 <template>
   <div class="flex flex-auto justify-between items-center border-2">
-    <div class="text-xl ml-5">
-      <span v-if="showFilter">
-        当前显示筛选信息
-      </span>
-      <span v-else-if="showSearch">
-        当前显示搜索信息
-      </span>
-      <span v-else>
-        当前显示所有信息
-      </span>
+    <div class="text-white rounded-md bg-blue-400 p-1 hover:bg-blue-300 m-1">
+      bar
     </div>
     <div class="function">
       <button @click="toggleShowFilter"
