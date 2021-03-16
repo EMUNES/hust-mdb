@@ -11,6 +11,7 @@ export default createStore({
       // API for users.
       userAPI: 'http://127.0.0.1:8000/auth/users/',
       // API for filtering.
+      filterBaseAPI: 'http://127.0.0.1:8000/core/?',
       filterAPI: 'http://127.0.0.1:8000/core/?',
       filter: {
         series: '',
@@ -30,11 +31,12 @@ export default createStore({
   // sync, mutate state.
   mutations: {
     getFilter(state, payload) {
-      console.log(payload)
+      // Init our request API.
+      state.backendAPIs.filterAPI = state.backendAPIs.filterBaseAPI
       // Access all filter fields and add them into request url.
       for (let [key, value] of Object.entries(state.backendAPIs.filter)) {
         value = payload[key]
-        let filterField = `${key}=${value}&`
+        let filterField = `${key}__icontains=${value}&`
         state.backendAPIs.filterAPI = state.backendAPIs.filterAPI + filterField
       }
       

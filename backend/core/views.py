@@ -25,17 +25,20 @@ class MaterialList(generics.ListCreateAPIView):
     serializer_class = MaterialSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["series", 
-                        "mark", 
-                        "manufacturer",
-                        "acronym",
-                        "material_type",
-                        "data_source",
-                        "material_id",
-                        "level_code",
-                        "vendor_code",
-                        "fibre_or_infill"]
     
+    filterset_fields = {
+        "series": ["icontains"],
+        "mark": ["icontains"],
+        "manufacturer": ["icontains"],
+        "acronym": ["icontains"],
+        "material_type": ["icontains"],
+        "data_source": ["icontains"],
+        "material_id": ["icontains"],
+        "level_code": ["icontains"],
+        "vendor_code": ["icontains"],
+        "fibre_or_infill": ["contains"],
+    }
+        
 
 class MaterialDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Material.objects.all()

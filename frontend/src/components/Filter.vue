@@ -31,7 +31,7 @@
         class="block w-full border-2 border-gray-800">
       </div>
       <div class="m-2">
-        <label for="材料名称缩写">acronym: </label>
+        <label for="材料名称缩写">材料名称缩写: </label>
         <input type="text" v-model="acronym" @keypress.enter="submitThis"
         class="block w-full border-2 border-gray-800">
       </div>
@@ -123,7 +123,6 @@ export default {
         vendor_code: vendor_code.value,
         fibre_or_infill: fibre_or_infill.value
       })
-      console.log(store.state.backendAPIs.filterAPI)
       context.emit('addFilter')
     }
 

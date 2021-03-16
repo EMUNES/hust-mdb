@@ -53,11 +53,13 @@ export default {
 
     const requestFilter = () => {
       toggleShowFilter()
+      console.log(store.state.backendAPIs.filterAPI)
       axios.get(store.state.backendAPIs.filterAPI, {
         headers: {}
       })
         .then(res => {
           events.value = res.data.results
+          totalPages.value = res.data.total_pages
         })
           .catch(err => {console.log(err)})
     }
