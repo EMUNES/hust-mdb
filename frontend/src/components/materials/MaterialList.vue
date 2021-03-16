@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>当前显示表格</h1>
     <div v-for="event in events" :key="event">
       <span>{{ event.id }}</span> | 
       <span>{{ event.mark }}</span> | 
