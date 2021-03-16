@@ -4,7 +4,7 @@
   </div>
   <div  v-if="showing"
   class="absolute text-left w-1/3 right-1/3 max-w-2xl z-50 bg-white text-black rounded-lg">
-    <form class="text-black">
+    <form class="text-black m-3">
       <div class="text-black text-3xl m-2 p-2 border-b">
           筛选
         <button @click="closeThis"
