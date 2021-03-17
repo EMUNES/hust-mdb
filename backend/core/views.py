@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 from core.models import Material
 from core.serializers import MaterialSerializer, UserSerializer
@@ -24,7 +25,7 @@ class MaterialList(generics.ListCreateAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     
     filterset_fields = {
         "series": ["icontains"],
@@ -38,6 +39,18 @@ class MaterialList(generics.ListCreateAPIView):
         "vendor_code": ["icontains"],
         "fibre_or_infill": ["contains"],
     }
+    
+    search_fields = [
+        "series",
+        "mark",
+        "manufacturer",
+        "acronym",
+        "material_type",
+        "data_source",
+        "material_id",
+        "level_code",
+        "vendor_code",
+        "fibre_or_infill",]
         
 
 class MaterialDetail(generics.RetrieveUpdateDestroyAPIView):

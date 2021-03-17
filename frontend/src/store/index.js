@@ -10,6 +10,8 @@ export default createStore({
       coreAPI: 'http://127.0.0.1:8000/core/',
       // API for users.
       userAPI: 'http://127.0.0.1:8000/auth/users/',
+      // API FOR searching.
+      searchAPI: 'http://127.0.0.1:8000/core/?search=',
       // API for filtering.
       filterBaseAPI: 'http://127.0.0.1:8000/core/?',
       filterAPI: 'http://127.0.0.1:8000/core/?',
