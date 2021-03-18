@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div v-for="event in events" :key="event">
-      <span>{{ event.id }}</span> | 
-      <span>{{ event.mark }}</span> | 
-      <span>{{ event.series }}</span> | 
-      <span>{{ event.manufacturer }}</span>
-    </div>
+  <div v-for="event in events" :key="event">
+    <span>{{ event.id }}</span> | 
+    <span>{{ event.mark }}</span> | 
+    <span>{{ event.series }}</span> | 
+    <span>{{ event.manufacturer }}</span>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import HelloWorld from '../views/HelloWorld.vue';
+import Home from '../views/Home.vue';
 import Materials from '../views/Materials.vue';
 
 const history = createWebHistory()
@@ -7,8 +7,8 @@ const history = createWebHistory()
 const routes = [
     {
         path: '/',
-        name: 'Helloworld',
-        component: HelloWorld
+        name: 'Home',
+        component: Home
     },
     {
         path: '/materials',

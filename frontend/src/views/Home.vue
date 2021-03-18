@@ -1,4 +1,5 @@
 <template>
+  <navigation></navigation>
   <h1>{{ testMsg }}</h1>
   <h2 class="text-red-500">tailwind is working!</h2>
 
@@ -15,8 +16,14 @@
 </template>
 
 <script>
+import Navigation from '../components/Navigation.vue';
+
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
+
+  components: {
+    Navigation
+  },
   
   props: {
     msg: {

@@ -1,28 +1,24 @@
 <template>
-  <div class="flex flex-auto justify-between items-center border-2">
-    <div class="text-white rounded-md bg-blue-400 p-1 hover:bg-blue-300 m-1">
-      bar
-    </div>
-    <div class="function">
+  <navigation>
+    <li class="inline-block rounded-full mx-2">
       <button @click="initPagination"
-      class="text-white rounded-md bg-blue-400 p-1 hover:bg-blue-300 m-1">
-        Init
+      class="outline-none">
+        <i class="fas fa-redo-alt"></i>
       </button>
+    </li>
+    <li class="inline-block rounded-full mx-2">
       <button @click="toggleShowFilter"
-      class="text-white rounded-md bg-blue-400 p-1 hover:bg-blue-300 m-1">
-        Filter
+      class="outline-none">
+        <i class="fas fa-filter"></i>
       </button>
-      <div 
-      class="search inline-block mx-2">
-        <input type="text" placeholder="Search..." v-model="searchContent" @keydown.enter="requestSearch"
-        class="border-2 rounded-full w-24 outline-none">
-        <button @click="requestSearch"
-        class="text-white rounded-md bg-blue-400 p-1 hover:bg-blue-300 m-1">
-          Search
-        </button>
-      </div>
-    </div>
-  </div>
+    </li>
+    <li class="search inline-block mx-2 my-1 border-2 border-gray-500 rounded bg-white">
+      <input type="text" placeholder="Search..." v-model="searchContent" @keydown.enter="requestSearch"
+      class="w-25 outline-none px-1 py-1">
+      <i @click="requestSearch"
+      class="fas fa-search mx-2"></i>
+    </li>
+  </navigation>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
   <material-list :events="events"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
@@ -33,6 +29,7 @@ import axios from '../request/axios.js';
 import MaterialList from '../components/materials/MaterialList.vue'
 import Paginator from '../components/Paginator.vue'
 import Filter from '../components/Filter.vue'
+import Navigation from '../components/Navigation.vue';
 import { onBeforeMount, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
@@ -42,7 +39,8 @@ export default {
   components: {
     MaterialList,
     Paginator,
-    Filter
+    Filter,
+    Navigation
   },
 
   setup(_, context) {

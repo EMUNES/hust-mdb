@@ -27,7 +27,7 @@
         class="h-5 w-8">
       </a>
       <a href="javascript: void(0)" @click="pageTo(pageCurrent)"
-      class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-blue-50 text-sm font-medium text-gray-700 hover:bg-gray-50">
+      class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50">
         {{pageCurrent}}
       </a>
       <a href="javascript: void(0)" v-if="pageNext1" @click="pageTo(pageNext1)"
