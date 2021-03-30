@@ -5,6 +5,7 @@
     </div>
     <div v-for="eventInfo in events" :key="eventInfo">
       <material-detail :eventDetail="eventInfo" :detailId="detailId">
+        <!-- Brief introduction for materials shown in the list. -->
         <div class="flex justify-between items-center text p-3 border-2 border-blue-400 bg-blue-200 rounded-xl my-5 mx-12">
           <div class="id xl w-10">
             <span>{{ eventInfo.id }}</span>
