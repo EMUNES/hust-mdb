@@ -4,20 +4,28 @@
     <li class="inline-block rounded-full mx-2">
       <button @click="initPagination"
       class="outline-none">
-        <i class="fas fa-redo-alt"></i>
+        <svg class="inline h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+        </svg>
       </button>
     </li>
     <li class="inline-block rounded-full mx-2">
       <button @click="toggleShowFilter"
-      class="outline-none">
-        <i class="fas fa-filter"></i>
+      class="outline-none h-5 w-5">
+        <span class="sr-only">Filter</span>
+        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+        </svg>
       </button>
     </li>
     <li class="search inline-block mx-2 my-1 border-2 border-gray-500 rounded bg-white">
       <input type="text" placeholder="Search..." v-model="searchContent" @keydown.enter="requestSearch"
       class="w-25 outline-none px-1 py-1">
-      <i @click="requestSearch"
-      class="fas fa-search mx-2"></i>
+      <button @click="requestSearch" class="px-1 border-l-2">
+        <svg class="inline w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+      </button>
     </li>
   </navigation>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
