@@ -1,4 +1,5 @@
 <template>
+  <general-header></general-header>
   <navigation></navigation>
   <h1>{{ testMsg }}</h1>
   <h2 class="text-red-500">tailwind is working!</h2>
@@ -17,12 +18,14 @@
 
 <script>
 import Navigation from '../components/Navigation.vue';
+import GeneralHeader from '../components/GeneralHeader.vue';
 
 export default {
   name: 'Home',
 
   components: {
-    Navigation
+    Navigation,
+    GeneralHeader
   },
   
   props: {

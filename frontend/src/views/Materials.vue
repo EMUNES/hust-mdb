@@ -1,4 +1,5 @@
 <template>
+  <general-header></general-header>
   <navigation>
     <li class="inline-block rounded-full mx-2">
       <button @click="initPagination"
@@ -32,6 +33,7 @@ import Filter from '../components/Filter.vue'
 import Navigation from '../components/Navigation.vue';
 import { onBeforeMount, ref, watch } from 'vue';
 import { useStore } from 'vuex';
+import GeneralHeader from '../components/GeneralHeader.vue';
 
 export default {
   name: 'Materials',
@@ -40,7 +42,8 @@ export default {
     MaterialList,
     Paginator,
     Filter,
-    Navigation
+    Navigation,
+    GeneralHeader
   },
 
   setup(_, context) {

@@ -4,10 +4,12 @@
   </slot>
   <!-- Detailed information for the drop page. -->
   <div v-if="showDetail"
-  class="mx-10 bg-blue-50 rounded-lg">
-    <h4 class="text-lg my-2 p-2">
-      材料详细信息
-    </h4>
+  class="mx-10 border-2 border-gray-500 rounded-xl">
+    <div class="detail-bar">
+      <h4 class="text-lg my-2 p-2">
+        材料详细信息
+      </h4>
+    </div>
     <div class="flex flex-wrap border-b-2 pb-1 border-gray-300">
       <div v-show="eventDetail.series" class="detail-info-field">
         系列： 

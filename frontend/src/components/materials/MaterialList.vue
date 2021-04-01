@@ -1,26 +1,28 @@
 <template>
-  <div class="list bg-blue-100 m-auto max-w-3xl rounded-xl">
-    <div class="text-xl pt-5">
+  <div class="list bg-gray-50 m-auto max-w-3xl rounded-xl">
+    <div class="text-xl py-5">
       热塑性材料信息表
     </div>
     <div v-for="eventInfo in events" :key="eventInfo">
       <material-detail :eventDetail="eventInfo" :detailId="detailId">
         <!-- Brief introduction for materials shown in the list. -->
-        <div class="flex justify-between items-center text p-3 border-2 border-blue-400 bg-blue-200 rounded-xl my-5 mx-12">
+        <div class="flex justify-between items-center border-2 border-gray-300 rounded-xl my-3 mx-12">
           <div class="id xl w-10">
             <span>{{ eventInfo.id }}</span>
           </div>
-          <div class="info inline-grid grid-cols-2 flex-auto justify-center">
+          <div class="flex flex-wrap justify-center items-center">
             <div class="info-field">
-              <span class="field-name">系列</span>
-              {{ eventInfo.series }}
+              <span class="field-name">材料ID:</span>
+              <p>{{ eventInfo.material_id }}</p>
             </div>
             <div class="info-field">
-              <span class="block">牌号</span>
-              {{ eventInfo.mark }}
+              <span class="field-name">材料缩写名称：</span>
+              <p>{{ eventInfo.acronym }}</p>
             </div>
-            <span class="info-field">材料缩写名称：{{ eventInfo.acronym }}</span>
-            <span class="info-field">材料类型：{{ eventInfo.material_type }}</span>
+            <div class="info-field">
+              <span class="field-name">材料类型：</span>
+              <p>{{ eventInfo.material_type }}</p>
+            </div>
           </div>
           <button class="m-5" @click="toggleDetail">
             <i class="fas fa-arrow-down"></i>
@@ -68,10 +70,10 @@ export default {
 
 <style>
 .field-name {
-  @apply block mx-4;
+  @apply mx-2;
 }
 
 .info-field {
-  @apply bg-blue-50 m-2 rounded flex justify-between ;
+  @apply m-2 flex
 }
 </style>

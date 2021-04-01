@@ -1,30 +1,5 @@
 <template>
-  <div>
-      <header class="text-center">
-        <h2 class="text text-3xl">
-          华中科技大学
-        </h2>
-
-        <h4 class="text text-2xl">
-          材料学院
-        </h4>
-
-        <h4 class="text text-2xl">
-          热塑性材料数据库
-        </h4>
-      </header>
-      
-    <router-link to="/">
-      首页
-    </router-link> | 
-
-
-    <router-link to="/materials">
-      热塑性材料信息
-    </router-link>
-    
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
@@ -49,6 +24,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
