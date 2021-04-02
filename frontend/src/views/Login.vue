@@ -16,6 +16,7 @@ import RegisterForm from '../components/auth/RegisterForm.vue';
 import Logout from '../components/auth/Logout.vue';
 import axios from '../request/axios.js';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
 export default {
@@ -29,17 +30,23 @@ export default {
     const currentLogin = ref(true)
     const currentRegister = ref(false)
     const store = useStore()
+    const router = useRouter()
 
     const login = (paylood) => {
-      console.log(paylood.username)
+      // Try to require token.
       axios.post(store.state.backendAPIs.tokenAPI, {
         username: paylood.username,
         password: paylood.password
       })
         .then(res => {
-          localStorage.setItem('hust-mdbsys-token', res.data.token)
+          localStorage.setItem(store.state.localTokenName, res.data.token)
         })
           .catch(err => console.log(err))
+      
+      // If the token is required and athenticated, jump to the main page.
+      if (store.getters.isAuthenticated) {
+        router.push('/')
+      }
     }
 
     return {
