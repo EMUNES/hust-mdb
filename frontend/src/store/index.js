@@ -30,8 +30,15 @@ export default createStore({
       // API for login.
       loginAPI: 'http://127.0.0.1:8000/auth/login/',
       // API for token.
-      tokenAPI: 'http://127.0.0.1:8000/api-token-auth/'
+      tokenAPI: 'http://127.0.0.1:8000/api-token-auth/',
     }, 
+    localTokenName: 'hust-mdbsys-token'
+  },
+
+  getters: {
+    isAuthenticated: state => {
+      return true ? localStorage.getItem(state.localTokenName) : false
+    }
   },
   
   // sync, mutate state.
