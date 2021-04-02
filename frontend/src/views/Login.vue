@@ -32,11 +32,13 @@ export default {
 
     const login = (paylood) => {
       console.log(paylood.username)
-      axios.post(store.state.backendAPIs.loginAPI, {
+      axios.post(store.state.backendAPIs.tokenAPI, {
         username: paylood.username,
         password: paylood.password
       })
-        .then(res => console.log(res.data.token))
+        .then(res => {
+          localStorage.setItem('hust-mdbsys-token', res.data.token)
+        })
           .catch(err => console.log(err))
     }
 
