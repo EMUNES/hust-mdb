@@ -4,8 +4,7 @@ import store from '../store/index'
 export default axios.create({
     baseUrl: store.state.backendAPIs.rootAPI,
     headers: {
-        'Content-Type': 'application/json',
-        'Authorization': ''
+        'Content-Type': 'application/json'
     },
     xsrfCookieName: 'csrf-token',
     xsrfHeaderName: 'X-CSRFToken',

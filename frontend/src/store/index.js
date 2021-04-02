@@ -27,6 +27,8 @@ export default createStore({
         vendor_code: '',
         fibre_or_infill: ''
       },
+      // API for login.
+      loginAPI: 'http://127.0.0.1:8000/auth/login/'
     },
   },
   
