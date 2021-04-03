@@ -37,7 +37,7 @@ class MaterialList(generics.ListCreateAPIView):
         "material_id": ["icontains"],
         "level_code": ["icontains"],
         "vendor_code": ["icontains"],
-        "fibre_or_infill": ["contains"],
+        "fibre_or_infill": ["icontains"],
     }
     
     search_fields = [

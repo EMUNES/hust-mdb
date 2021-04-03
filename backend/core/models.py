@@ -75,4 +75,3 @@ class Material(models.Model):
 
     class Meta:
         db_table = "test"
-        managed = False
