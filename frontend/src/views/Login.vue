@@ -3,7 +3,16 @@
     华中科技大学
   </header>
 
-  <div class="flex flex-col items-center justify-center h-screen">
+  <div class="flex flex-col items-center justify-center h-screen w-2/3 md:m-auto">
+    <div class="mb-10">
+      <button class="text-blue-400 border-b-2 border-current px-5 text-xl mx-1">
+        登录
+      </button>
+      
+      <button class="hover:text-green-600 border-b-2 hover:border-current px-5 text-xl mx-1">
+        注册
+      </button>
+    </div>
     <login-form @login-submit="login">
 
     </login-form>
@@ -28,7 +37,6 @@ export default {
   },
   setup() {
     const currentLogin = ref(true)
-    const currentRegister = ref(false)
     const store = useStore()
     const router = useRouter()
 
@@ -41,7 +49,9 @@ export default {
         .then(res => {
           localStorage.setItem(store.state.localTokenName, res.data.token)
         })
-          .catch(err => console.log(err))
+          .catch(err => {
+            console.log(err)
+          })
       
       // If the token is required and athenticated, jump to the main page.
       if (store.getters.isAuthenticated) {
@@ -51,7 +61,6 @@ export default {
 
     return {
       currentLogin,
-      currentRegister,
       login
     }
   }
