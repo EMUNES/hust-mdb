@@ -106,9 +106,9 @@ export default {
     }
 
     const make_update = (payload) => {
-      console.log(localStorage.getItem('hust-mdbsys-token'))
-      axios.put(store.state.backendAPIs.coreAPI + payload.ID + '/', payload.newDetail)
-        .then(res => {console.log('Successful!')})
+      console.log(payload)
+      axios.put(store.state.backendAPIs.coreAPI + payload.id + '/', payload)
+        .then(res => window.alert('提交成功！'))
           .catch(err => console.log(err))
     }
 
