@@ -351,7 +351,7 @@
     </div>
   </div>
 
-  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal">
+  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal" @modifyMaterialDetail="detailModified">
 
   </material-modal>
 </template>
@@ -373,6 +373,9 @@ export default {
   components: {
     MaterialModal,
   },
+  emits: [
+    'updateDetail'
+  ],
   setup(props, context) {
     const eventDetail = toRef(props, "eventDetail")
     const detailId = toRef(props, "detailId")
@@ -415,6 +418,10 @@ export default {
 
     const closeModal = () => {
       showModal.value = false
+    }
+
+    const detailModified = (payload) => {
+      context.emit('updateDetail', payload)
     }
 
     watch(detailId, () => {
@@ -460,7 +467,8 @@ export default {
       toggleAll,
       showModal,
       toggleModal,
-      closeModal
+      closeModal,
+      detailModified
     }
   }
 }

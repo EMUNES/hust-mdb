@@ -29,7 +29,7 @@
     </li>
   </navigation>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
-  <material-list :events="events"></material-list>
+  <material-list :events="events" @update-material="make_update"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
 </template>
 
@@ -105,6 +105,13 @@ export default {
       searchContent.value = ''
     }
 
+    const make_update = (payload) => {
+      console.log(localStorage.getItem('hust-mdbsys-token'))
+      axios.put(store.state.backendAPIs.coreAPI + payload.ID + '/', payload.newDetail)
+        .then(res => {console.log('Successful!')})
+          .catch(err => console.log(err))
+    }
+
     // Page initializtion.
     onBeforeMount(() => {
       dataRequest()
@@ -135,7 +142,8 @@ export default {
       dataRequest,
       toggleShowFilter,
       requestFilter,
-      updateRequestPage
+      updateRequestPage,
+      make_update
     }
   }
 }
