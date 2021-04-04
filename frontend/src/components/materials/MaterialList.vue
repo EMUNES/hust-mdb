@@ -4,7 +4,7 @@
       热塑性材料信息表
     </div>
     <div v-for="eventInfo in events" :key="eventInfo">
-      <material-detail :eventDetail="eventInfo" :detailId="detailId" @update-detail="update">
+      <material-detail :eventDetail="eventInfo" :detailId="detailId" v-bind="$attrs">
         <!-- Brief introduction for materials shown in the list. -->
         <div class="flex justify-between items-center border-2 border-gray-300 rounded-xl my-3 mx-12">
           <div class="id xl w-10">
@@ -51,9 +51,6 @@ export default {
   components: {
     MaterialDetail,
   },
-  emits: [
-    'updateMaterial'
-  ],
   setup(_, context) {
     const detailId = ref(-1)
 
@@ -66,14 +63,9 @@ export default {
       }
     }
 
-    const update = (payload) => {
-      context.emit('updateMaterial', payload)
-    }
-
     return {
       detailId,
       toggleDetail,
-      update
     }
   }
 }

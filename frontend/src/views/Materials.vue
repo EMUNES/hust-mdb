@@ -34,7 +34,7 @@
     </li>
   </navigation>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
-  <material-list :events="events" @update-material="make_update"></material-list>
+  <material-list :events="events" @modal-form-submit="make_update" @delete-material="make_delete"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
   <material-modal :showModal="showDetailModal" :eventDetail="$store.state.materialModelInstance" @close="showDetailModal=false" @modal-form-submit="addNewMaterial"></material-modal>
 </template>
@@ -121,7 +121,7 @@ export default {
     
     // Update material detail.
     const make_update = (payload) => {
-      axios.put(store.state.backendAPIs.coreAPI + payload.id + '/', payload)
+      axios.put(store.state.backendAPIs.coreAPI + payload.id + '/', payload.data)
         .then(res => window.alert('实例更新成功！'))
           .catch(err => {
             window.alert('实例无法实现更新 详情请见控制台')
@@ -131,13 +131,26 @@ export default {
 
     // Add new material instance.
     const addNewMaterial = (payload) => {
-      console.log(payload)
-      axios.post(store.state.backendAPIs.coreAPI, payload)
+      axios.post(store.state.backendAPIs.coreAPI, payload.data)
         .then(_ => console.log('新的实例提交成功！'))
           .catch(err => {
             window.alert('添加实例失败 详情请见控制台')
             console.log(err)
           })
+    }
+
+    // Delete material instance.
+    const make_delete = (payload) => {
+      const del = confirm("确定删除该项材料数据吗？\n\n您的操作讲不可挽回。")
+
+      if (del) {
+        axios.delete(store.state.backendAPIs.coreAPI + payload.targetID + '/')
+          .then(_ => window.alert("删除成功！"))
+            .catch(err => {
+              window.alert('删除操作失败 详情请见控制台')
+              console.log(err)
+            })
+      }
     }
 
     // Page initializtion.
@@ -174,7 +187,8 @@ export default {
       make_update,
       showDetailModal,
       openDetailForm,
-      addNewMaterial
+      addNewMaterial,
+      make_delete
     }
   }
 }

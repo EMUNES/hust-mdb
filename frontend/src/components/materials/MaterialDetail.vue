@@ -6,7 +6,7 @@
   <div v-if="showDetail"
   class="mx-10 border-2 border-gray-500 rounded-xl">
     <div class="detail-bar flex items-center justify-between border-b-2">
-      <h4 class="text-lg text-2xl my-2 ml-3 p-2">
+      <h4 class="text-2xl my-2 ml-3 p-2">
         材料详细信息
       </h4>
 
@@ -24,6 +24,10 @@
 
         <button @click="toggleModal" class="mx-5">
           <svg t="1617421105074" class="h-7 w-7 opacity-50" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3316" width="200" height="200"><path d="M522.666667 458.666667c-17.066667 0-32 14.933333-32 32v362.666666c0 17.066667 14.933333 32 32 32S554.666667 870.4 554.666667 853.333333V490.666667c0-17.066667-14.933333-32-32-32zM341.333333 554.666667H106.666667c-17.066667 0-32 14.933333-32 32S89.6 618.666667 106.666667 618.666667h74.666666v234.666666c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V618.666667H341.333333c17.066667 0 32-14.933333 32-32S358.4 554.666667 341.333333 554.666667zM693.333333 373.333333c0-17.066667-14.933333-32-32-32h-106.666666V170.666667c0-17.066667-14.933333-32-32-32S490.666667 153.6 490.666667 170.666667v170.666666h-106.666667c-17.066667 0-32 14.933333-32 32S366.933333 405.333333 384 405.333333h277.333333c17.066667 0 32-14.933333 32-32zM917.333333 618.666667H682.666667c-17.066667 0-32 14.933333-32 32S665.6 682.666667 682.666667 682.666667h96v170.666666c0 17.066667 14.933333 32 32 32s32-14.933333 32-32v-170.666666H917.333333c17.066667 0 32-14.933333 32-32S934.4 618.666667 917.333333 618.666667zM213.333333 458.666667c17.066667 0 32-14.933333 32-32V170.666667c0-17.066667-14.933333-32-32-32S181.333333 153.6 181.333333 170.666667v256c0 17.066667 14.933333 32 32 32zM810.666667 522.666667c17.066667 0 32-14.933333 32-32V170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v320c0 17.066667 14.933333 32 32 32z" p-id="3317"></path></svg>
+        </button>
+
+        <button @click="deleteMaterial" class="mr-5"> 
+          <svg t="1617550603711" class="h-7 w-7 opacity-50" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11841" width="200" height="200"><path d="M341.013333 394.666667l27.754667 393.450666h271.829333l27.733334-393.450666h64.106666L704.426667 792.618667a64 64 0 0 1-63.829334 59.498666H368.768a64 64 0 0 1-63.829333-59.52L276.885333 394.666667h64.128z m139.306667 19.818666v298.666667h-64v-298.666667h64z m117.013333 0v298.666667h-64v-298.666667h64zM181.333333 288h640v64h-640v-64z m453.482667-106.666667v64h-256v-64h256z" p-id="11842"></path></svg>
         </button>
 
         <button @click.prevent="showDetail=false">
@@ -351,7 +355,7 @@
     </div>
   </div>
 
-  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal" @modal-form-submit="detailModified">
+  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal" v-bind="$attrs">
 
   </material-modal>
 </template>
@@ -374,7 +378,7 @@ export default {
     MaterialModal,
   },
   emits: [
-    'updateDetail'
+    'deleteMaterial'
   ],
   setup(props, context) {
     const eventDetail = toRef(props, "eventDetail")
@@ -420,8 +424,10 @@ export default {
       showModal.value = false
     }
 
-    const detailModified = (payload) => {
-      context.emit('updateDetail', payload)
+    const deleteMaterial = () => {
+      context.emit('deleteMaterial', {
+        targetID: eventDetail.value.id
+      })
     }
 
     watch(detailId, () => {
@@ -468,7 +474,7 @@ export default {
       showModal,
       toggleModal,
       closeModal,
-      detailModified
+      deleteMaterial
     }
   }
 }
