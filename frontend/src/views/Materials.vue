@@ -18,6 +18,11 @@
         </svg>
       </button>
     </li>
+    <li class="inline-block rounded-full mx-2">
+      <button @click="openDetailForm">
+        <span class="sr-only">Delete</span>
+        <svg t="1617534954422" class="inline h-5 w-5" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2957" width="200" height="200"><path d="M874.666667 469.333333H554.666667V149.333333c0-23.466667-19.2-42.666667-42.666667-42.666666s-42.666667 19.2-42.666667 42.666666v320H149.333333c-23.466667 0-42.666667 19.2-42.666666 42.666667s19.2 42.666667 42.666666 42.666667h320v320c0 23.466667 19.2 42.666667 42.666667 42.666666s42.666667-19.2 42.666667-42.666666V554.666667h320c23.466667 0 42.666667-19.2 42.666666-42.666667s-19.2-42.666667-42.666666-42.666667z" p-id="2958"></path></svg>      </button>
+    </li>
     <li class="search inline-block mx-2 my-1 border-2 border-gray-500 rounded bg-white">
       <input type="text" placeholder="Search..." v-model="searchContent" @keydown.enter="requestSearch"
       class="w-25 outline-none px-1 py-1">
@@ -31,6 +36,7 @@
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
   <material-list :events="events" @update-material="make_update"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
+  <material-modal :showModal="showDetailModal" :eventDetail="$store.state.materialModelInstance" @close="showDetailModal=false" @modal-form-submit="addNewMaterial"></material-modal>
 </template>
 
 <script>
@@ -42,6 +48,7 @@ import Navigation from '../components/Navigation.vue';
 import { onBeforeMount, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import GeneralHeader from '../components/GeneralHeader.vue';
+import MaterialModal from '../components/materials/MaterialModal.vue';
 
 export default {
   name: 'Materials',
@@ -51,7 +58,8 @@ export default {
     Paginator,
     Filter,
     Navigation,
-    GeneralHeader
+    GeneralHeader,
+    MaterialModal
   },
 
   setup(_, context) {
@@ -60,6 +68,7 @@ export default {
     const events = ref([])
     const store = useStore()
     const showFilter = ref(false)
+    const showDetailModal = ref(false)
     const initPage = ref(false)
     const searchContent = ref('')
 
@@ -78,6 +87,11 @@ export default {
     // Open/Close the filter form.
     const toggleShowFilter = () => {
       showFilter.value = !showFilter.value
+    }
+
+    // Open/Close the material detail form.
+    const openDetailForm = () => {
+      showDetailModal.value = true
     }
 
     // Update page content with page number.
@@ -104,12 +118,26 @@ export default {
       dataRequest(_, store.state.backendAPIs.searchAPI + searchContent.value)
       searchContent.value = ''
     }
-
+    
+    // Update material detail.
     const make_update = (payload) => {
-      console.log(payload)
       axios.put(store.state.backendAPIs.coreAPI + payload.id + '/', payload)
-        .then(res => window.alert('提交成功！'))
-          .catch(err => console.log(err))
+        .then(res => window.alert('实例更新成功！'))
+          .catch(err => {
+            window.alert('实例无法实现更新 详情请见控制台')
+            console.log(err)
+          })
+    }
+
+    // Add new material instance.
+    const addNewMaterial = (payload) => {
+      console.log(payload)
+      axios.post(store.state.backendAPIs.coreAPI, payload)
+        .then(_ => console.log('新的实例提交成功！'))
+          .catch(err => {
+            window.alert('添加实例失败 详情请见控制台')
+            console.log(err)
+          })
     }
 
     // Page initializtion.
@@ -143,7 +171,10 @@ export default {
       toggleShowFilter,
       requestFilter,
       updateRequestPage,
-      make_update
+      make_update,
+      showDetailModal,
+      openDetailForm,
+      addNewMaterial
     }
   }
 }

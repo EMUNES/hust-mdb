@@ -351,7 +351,7 @@
     </div>
   </div>
 
-  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal" @modifyMaterialDetail="detailModified">
+  <material-modal :showModal="showModal" :eventDetail="eventDetail" @close="closeModal" @modal-form-submit="detailModified">
 
   </material-modal>
 </template>

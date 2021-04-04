@@ -305,7 +305,7 @@ export default {
   },
   emits: [
     'close',
-    'modifyMaterialDetail'
+    'modalFormSubmit'
   ],
   setup(props, context) {
     const eventDetail = toRef(props, 'eventDetail')
@@ -375,7 +375,7 @@ export default {
     }
 
     const modifyDetail = () => {
-      context.emit('modifyMaterialDetail', {
+      context.emit('modalFormSubmit', {
         id: id.value,
         series: series.value,
         mark: mark.value,
