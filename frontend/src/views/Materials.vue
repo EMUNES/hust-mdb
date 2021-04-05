@@ -34,9 +34,9 @@
     </li>
   </navigation>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
-  <material-list :events="events" @modal-form-submit="make_update" @delete-material="make_delete"></material-list>
+  <material-list :events="events" @modal-form-submit="makeUpdate" @delete-material="makeDelete"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
-  <material-modal :showModal="showDetailModal" :eventDetail="$store.state.materialModelInstance" @close="showDetailModal=false" @modal-form-submit="addNewMaterial"></material-modal>
+  <material-modal :showModal="showDetailModal" :eventDetail="$store.state.materialModelInstance" @close="showDetailModal=false" @modal-form-submit="makeNew"></material-modal>
 </template>
 
 <script>
@@ -71,6 +71,7 @@ export default {
     const showDetailModal = ref(false)
     const initPage = ref(false)
     const searchContent = ref('')
+    const totalMaterials = ref(0)
 
     // A general request method to connect backend API.
     const dataRequest = (_, backendURL=store.state.backendAPIs.coreAPI) => {
@@ -80,6 +81,10 @@ export default {
         .then(res => {
           events.value = res.data.results
           totalPages.value = res.data.total_pages
+          totalMaterials.value = res.data.count
+          store.commit('setCount', {
+            count: totalMaterials.value
+          })
         })
           .catch(err => {console.error(err)})
     }
@@ -120,7 +125,7 @@ export default {
     }
     
     // Update material detail.
-    const make_update = (payload) => {
+    const makeUpdate = (payload) => {
       axios.put(store.state.backendAPIs.coreAPI + payload.id + '/', payload.data)
         .then(res => window.alert('实例更新成功！'))
           .catch(err => {
@@ -130,7 +135,10 @@ export default {
     }
 
     // Add new material instance.
-    const addNewMaterial = (payload) => {
+    const makeNew = (payload) => {
+      // Django won't handle the primary key for us.
+      // We have to set the primary key id field by ourself.
+      store.commit('addCount', _)
       axios.post(store.state.backendAPIs.coreAPI, payload.data)
         .then(_ => console.log('新的实例提交成功！'))
           .catch(err => {
@@ -140,7 +148,7 @@ export default {
     }
 
     // Delete material instance.
-    const make_delete = (payload) => {
+    const makeDelete = (payload) => {
       const del = confirm("确定删除该项材料数据吗？\n\n您的操作讲不可挽回。")
 
       if (del) {
@@ -184,11 +192,11 @@ export default {
       toggleShowFilter,
       requestFilter,
       updateRequestPage,
-      make_update,
       showDetailModal,
       openDetailForm,
-      addNewMaterial,
-      make_delete
+      makeNew,
+      makeUpdate,
+      makeDelete
     }
   }
 }
