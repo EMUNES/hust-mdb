@@ -32,7 +32,10 @@ export default createStore({
       // API for token.
       tokenAPI: 'http://127.0.0.1:8000/api-token-auth/',
     }, 
+    // Token name in local storage for authentication.
     localTokenName: 'hust-mdbsys-token',
+    // The total counts of objects in the current database.
+    totalCounts: 0,
     // Template for material instance.
     materialModelInstance: {
       series: '#',
@@ -117,6 +120,14 @@ export default createStore({
       
       //Trim the filter request url.
       state.backendAPIs.filterAPI = state.backendAPIs.filterAPI.slice(0, -1).trim()
+    },
+
+    setCount(state, payload) {
+      state.totalCounts = payload.count
+    },
+
+    addCount(state, _) {
+      state.totalCounts++
     }
   }, 
 
