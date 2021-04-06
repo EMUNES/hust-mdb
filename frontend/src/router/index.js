@@ -3,6 +3,8 @@ import store from '../store/index';
 import Home from '../views/Home.vue';
 import Materials from '../views/Materials.vue';
 import Login from '../views/Login.vue';
+import API from '../views/API.vue';
+import Contact from '../views/Contact.vue';
 
 const history = createWebHistory()
 
@@ -21,8 +23,17 @@ const routes = [
         path: '/materials',
         name: 'Materials',
         component: Materials
-
     },
+    {
+        path: '/checkAPI',
+        name: 'API',
+        component: API
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        component: Contact
+    }
 ]
 
 const isAuthenticated = store.getters.isAuthenticated

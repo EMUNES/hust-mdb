@@ -4,13 +4,8 @@
 
 <script>
 
-import HeadBar from './components/bars/HeadBar.vue';
-
 export default {
   name: 'App',
-  components: {
-    HeadBar,
-  }
 }
 
 // This starter template is using Vue 3 experimental <script setup> SFCs

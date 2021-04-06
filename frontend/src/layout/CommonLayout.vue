@@ -3,10 +3,10 @@
 <template>
   <general-header></general-header>
   <div class="nav flex items-start">  
-    <side-bar></side-bar>
+    <side-bar v-if="sidebar"></side-bar>
 
     <div class="w-full">
-      <head-bar>
+      <head-bar :sidebarShowing="sidebar" @udpate:sidebarShowing="sidebar=$event">
         <template #func-head>
           <slot name="func-head">
           </slot>
@@ -23,13 +23,21 @@
 import GeneralHeader from '../components/GeneralHeader.vue';
 import HeadBar from '../components/bars/HeadBar.vue';
 import SideBar from '../components/bars/SideBar.vue';
+import { ref } from 'vue';
 
 export default {
-  name: 'CommonBodyLayut',
+  name: 'CommonLayout',
   components: {
     GeneralHeader,
     HeadBar,
     SideBar
+  },
+  setup() {
+    const sidebar = ref(true)
+
+    return {
+      sidebar
+    }
   }
 }
 </script>
