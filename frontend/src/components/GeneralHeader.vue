@@ -13,7 +13,7 @@
       登出
     </button>
   </div>
-  <header class="bg-blue-100 pt-14 pb-10">
+  <header class="bg-gradient-to-t from-blue-100 via-blue-200 to-blue-100 pt-14 pb-10">
     <h2 class="text text-3xl mb-5">
       华中科技大学
     </h2>

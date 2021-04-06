@@ -28,9 +28,12 @@ export default createStore({
         fibre_or_infill: ''
       },
       // API for login.
-      loginAPI: 'http://127.0.0.1:8000/auth/login/',
+      loginAPI: 'http://127.0.0.1:8000/api-auth/login/',
       // API for token.
       tokenAPI: 'http://127.0.0.1:8000/api-token-auth/',
+      // Site managers.
+      admin: '',
+      responser: ''
     }, 
     // Token name in local storage for authentication.
     localTokenName: 'hust-mdbsys-token',
