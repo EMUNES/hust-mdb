@@ -21,10 +21,6 @@
     </div>
   </div> -->
   <common-layout>
-    <template #func-head>
-      test
-    </template>
-
     <template #content>
       <h1>{{ testMsg }}</h1>
       <h2 class="text-red-500">tailwind is working!</h2>

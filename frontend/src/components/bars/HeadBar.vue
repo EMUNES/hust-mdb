@@ -1,6 +1,6 @@
 <template>
   <!-- headbar -->
-  <nav class="flex flex-auto justify-between items-center border-2">
+  <nav class="flex flex-auto justify-between items-center border-b-2">
     <ul class="flex rounded p-1 m-1">
       <!-- this button controls the sidebar, default showing sidebar. -->
       <button @click="toggleSideBar" class="ml-3 mr-4">
