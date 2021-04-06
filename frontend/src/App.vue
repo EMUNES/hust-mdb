@@ -4,12 +4,12 @@
 
 <script>
 
-import Navigation from './components/Navigation.vue';
+import HeadBar from './components/bars/HeadBar.vue';
 
 export default {
   name: 'App',
   components: {
-    Navigation,
+    HeadBar,
   }
 }
 

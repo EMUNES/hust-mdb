@@ -1,4 +1,5 @@
 <template>
+  <!-- headbar -->
   <nav class="flex flex-auto justify-between items-center border-2">
     <ul class="flex rounded p-1 m-1">
       <button class="ml-3 mr-4">
@@ -16,7 +17,7 @@
       </router-link>
     </ul>
     <ul class="function">
-      <slot>
+      <slot name="func-head">
         
       </slot>
     </ul>

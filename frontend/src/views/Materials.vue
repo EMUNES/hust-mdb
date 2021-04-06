@@ -1,6 +1,6 @@
 <template>
   <general-header></general-header>
-  <navigation>
+  <head-bar>
     <li class="inline-block rounded-full mx-2">
       <button @click="initPagination"
       class="outline-none">
@@ -32,7 +32,7 @@
         </svg>
       </button>
     </li>
-  </navigation>
+  </head-bar>
   <Filter :showing="showFilter" @close-filter="toggleShowFilter" @add-filter="requestFilter"/>
   <material-list :events="events" @modal-form-submit="makeUpdate" @delete-material="makeDelete"></material-list>
   <Paginator :initPage="initPage" :totalPages="totalPages" @page-updated="updateRequestPage" />
@@ -44,7 +44,7 @@ import axios from '../request/axios.js';
 import MaterialList from '../components/materials/MaterialList.vue'
 import Paginator from '../components/Paginator.vue'
 import Filter from '../components/Filter.vue'
-import Navigation from '../components/Navigation.vue';
+import HeadBar from '../components/bars/HeadBar.vue';
 import { onBeforeMount, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 import GeneralHeader from '../components/GeneralHeader.vue';
@@ -57,7 +57,7 @@ export default {
     MaterialList,
     Paginator,
     Filter,
-    Navigation,
+    HeadBar,
     GeneralHeader,
     MaterialModal
   },
