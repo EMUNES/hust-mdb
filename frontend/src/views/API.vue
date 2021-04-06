@@ -5,7 +5,7 @@
         <h1 class="flex flex-col text-2xl pb-5">
           后端API接口详情
           <small class="text-sm text-gray-400">
-            请注意：后端API仅供网站维护和功能调试使用，请勿直接对后端进行数据修改
+            请注意：后端API仅供网站维护和功能调试使用，请勿直接在后端进行数据修改
           </small>
         </h1>
         <span class="api-field">
