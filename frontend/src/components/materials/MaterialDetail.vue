@@ -3,13 +3,14 @@
 
   </slot>
   <!-- Detailed information for the drop page. -->
+  <!-- A great trick for list transtion is here! Use abosulte while leaving!!! -->
   <transition 
   enter-active-class="transition duration-700 ease-out"
   enter-from-class="opacity-0 scale-75"
   enter-to-class="opacity-100 scale-100"
-  leave-active-class="transition duration-200 ease-linear"
+  leave-active-class="transition duration-500 ease-in absolute max-w-2xl"
   leave-from-class="opacity-100 scale-100"
-  leave-to-class="opacity-0 scale-75">
+  leave-to-class="opacity-0 scale-50">
     <div v-if="showDetail"
     class="mx-10 border-2 border-gray-500 rounded-xl">
       <div class="detail-bar flex items-center justify-between border-b-2">
