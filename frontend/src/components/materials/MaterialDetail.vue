@@ -4,6 +4,7 @@
   </slot>
   <!-- Detailed information for the drop page. -->
   <!-- A great trick for list transtion is here! Use abosulte while leaving!!! -->
+  <!-- Also the drop content has to be as the same width as the parent block -->
   <transition 
   enter-active-class="transition duration-700 ease-out"
   enter-from-class="opacity-0 scale-75"
@@ -12,7 +13,7 @@
   leave-from-class="opacity-100 scale-100"
   leave-to-class="opacity-0 scale-50">
     <div v-if="showDetail"
-    class="mx-10 border-2 border-gray-500 rounded-xl">
+    class="mx-12 border-2 border-gray-500 rounded-xl">
       <div class="detail-bar flex items-center justify-between border-b-2">
         <h4 class="text-2xl my-2 ml-3 p-2">
           材料详细信息

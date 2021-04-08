@@ -2,18 +2,39 @@
   <common-layout>
     <template #content>
       <div class="flex flex-col text-center">
-        <div>
+        <transition appear
+        enter-active-class="transition duration-3000 ease-in"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100">
           <img class=" w-48 md:w-80 m-auto mt-20" src="../assets/doggy.jpeg" alt="孤独的犬">
-          <p class="text-xl my-3">
-            华中科技大学
-          </p>
-          <p class="text my-2">
-            某位同学
-          </p>
-          <p class="text-sm">
-            2021.3 - 2021.5
-          </p>
-        </div>
+        </transition>
+          <div>
+            <transition appear
+            enter-active-class="transition duration-1000 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100">
+              <p class="text-xl my-3">
+                华中科技大学
+              </p>
+            </transition>
+
+            <transition appear
+            enter-active-class="transition delay-1000 duration-1000 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100">
+              <p class="text my-2">
+                某位同学
+              </p>
+            </transition>
+            <transition appear
+            enter-active-class="transition delay-2000  duration-1000 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100">
+              <p class="text-sm">
+                2021.3 - 2021.5
+              </p>
+            </transition>
+          </div>
 
         <div class="mt-10 text-blue-700">
           <p>

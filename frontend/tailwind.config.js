@@ -5,7 +5,19 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'head-background': "url('./src/assets/hust-background.jpg')"
-      })
+      }),
+      transitionDuration: {
+        '1500': '1500ms',
+        '2000': '2000ms',
+        '3000': '3000ms'
+      },
+      transitionDelay: {
+        '1500': '1500ms',
+        '2000': '2000ms',
+        '2500': '2500ms',
+        '3000': '3000ms',
+        '3500': '3500ms'
+      }
     },
   },
   variants: {
