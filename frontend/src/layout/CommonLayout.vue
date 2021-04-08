@@ -3,7 +3,16 @@
 <template>
   <general-header></general-header>
   <div class="nav flex items-start">  
-    <side-bar v-if="sidebar"></side-bar>
+    <!-- transition here is set for common layout -->
+    <transition 
+    enter-active-class="transition duration-1000 ease-out"
+    leave-active-class="transition duration-200 ease-out"
+    enter-from-class="opacity-0 scale-70"
+    enter-to-class="opactiy-100 scale-100"
+    leave-from-class="opacity-100 scale-100"
+    leave-to-class="opacity-0 scale-70">
+      <side-bar v-if="sidebar"></side-bar>
+    </transition>
 
     <div class="w-full">
       <head-bar :sidebarShowing="sidebar" @udpate:sidebarShowing="sidebar=$event">

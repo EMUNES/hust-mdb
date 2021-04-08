@@ -1,5 +1,5 @@
 <template>
-  <div class="md:flex flex-col min-h-screen w-40 lg:w-56 border-r-2">
+  <div class="md:flex flex-col min-h-screen w-48 lg:w-64 border-r-2">
     <div class="my-3 py-2">
       <h1 class="font-bold text-xl">
         导航
@@ -11,7 +11,7 @@
         <router-link class="block px-4 py-3 text-sm font-semibold text-gray-900 bg-transparent rounded dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline border-t-2" to="/materials">资源信息表单</router-link>
         <router-link class="block px-4 py-3 text-sm font-semibold text-gray-900 bg-transparent rounded dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline border-t-2" to="/checkAPI">API资源接口</router-link>
         <router-link class="block px-4 py-3 text-sm font-semibold text-gray-900 bg-transparent rounded dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline border-t-2" to="/contact">联系与反馈</router-link>
-        <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline border-t-2">
+        <button @click="open = !open" class="flex flex-row items-center w-full text-center py-2 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline border-t-2">
           <span>高级功能</span>
         </button>
         <div v-show="open">
