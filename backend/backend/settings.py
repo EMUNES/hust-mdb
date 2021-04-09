@@ -134,7 +134,7 @@ CORS_ALLOW_CREDENTIALS = True
 # Set up REST framework settings.
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "core.pagination.CorePagination",
-    "PAGE_SIZE": 20,
+    "PAGE_SIZE": 12,
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
     ],

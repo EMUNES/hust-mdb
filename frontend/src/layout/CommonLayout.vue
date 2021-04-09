@@ -4,7 +4,7 @@
   <general-header></general-header>
   <div class="nav flex items-start">  
     <!-- transition here is set for common layout -->
-    <transition 
+    <transition appear
     enter-active-class="transition duration-1000 ease-out"
     leave-active-class="transition duration-200 ease-out"
     enter-from-class="opacity-0 scale-70"
@@ -13,14 +13,19 @@
     leave-to-class="opacity-0 scale-70">
       <side-bar v-if="sidebar"></side-bar>
     </transition>
-
+    
     <div class="w-full">
-      <head-bar :sidebarShowing="sidebar" @udpate:sidebarShowing="sidebar=$event">
-        <template #func-head>
-          <slot name="func-head">
-          </slot>
-        </template>
-      </head-bar>
+      <transition appear
+      enter-active-class="transition duration-500 ease-out"
+      enter-from-class="opacity-0 scale-70"
+      enter-to-class="opactiy-100 scale-100">
+        <head-bar :sidebarShowing="sidebar" @udpate:sidebarShowing="sidebar=$event">
+          <template #func-head>
+            <slot name="func-head">
+            </slot>
+          </template>
+        </head-bar>
+      </transition>
       <slot name="content">
         
       </slot>
