@@ -21,5 +21,9 @@ As you should be prepared by now, running the website is an easy task:
 
 You can check the frontend logging console to see the address of this website. By default, it's at *http://127.0.0.1:3000*
 
+## Dealing with authentication
+
+If you don't have an account to login, you can create your own superuser using the backend terminal or contact the author for default account. 
+
 
 
