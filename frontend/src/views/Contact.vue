@@ -11,7 +11,7 @@
           <div>
             <transition appear
             enter-active-class="transition duration-1000 ease-out"
-            enter-from-class="opacity-0"
+            enter-from-class="opacity-0 scale-75 transform translate-y-10"
             enter-to-class="opacity-100">
               <p class="text-xl my-3">
                 华中科技大学
@@ -20,7 +20,7 @@
 
             <transition appear
             enter-active-class="transition delay-1000 duration-1000 ease-out"
-            enter-from-class="opacity-0"
+            enter-from-class="opacity-0 scale-75 transform translate-y-16"
             enter-to-class="opacity-100">
               <p class="text my-2">
                 某位同学
@@ -28,7 +28,7 @@
             </transition>
             <transition appear
             enter-active-class="transition delay-2000  duration-1000 ease-out"
-            enter-from-class="opacity-0"
+            enter-from-class="opacity-0 scale-75 transform translate-y-24"
             enter-to-class="opacity-100">
               <p class="text-sm">
                 2021.3 - 2021.5

@@ -28,7 +28,6 @@ pnpm-debug.log*
 *.sw?
 
 # Unused database files
-*.sqlite3
 workspace.code-workspace
 
 # Backup folder.

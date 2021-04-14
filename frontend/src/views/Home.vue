@@ -21,7 +21,7 @@
 
         <transition appear
         enter-active-class="transition delay-1500 duration-2000 ease-out"
-        enter-from-class="opacity-0 scale-90"
+        enter-from-class="opacity-0 scale-90 transform traslate-x-24"
         enter-class="opacity-100 scale-100">
           <div class="content-body mt-10">
             <div class="flex flex-col flex-wrap items-center justify-around text-center mx-10 px-10 xl:flex-row">
