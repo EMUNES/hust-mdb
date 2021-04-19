@@ -25,7 +25,7 @@
 import LoginForm from '../components/auth/LoginForm.vue';
 import RegisterForm from '../components/auth/RegisterForm.vue';
 import Logout from '../components/auth/Logout.vue';
-import axios from '../request/axios.js';
+import axios_rec_token from '../request/axios_rec_token.js';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
@@ -42,11 +42,11 @@ export default {
     const store = useStore()
     const router = useRouter()
 
-    const login = (paylood) => {
+    const login = (payload) => {
       // Try to require token.
-      axios.post(store.state.backendAPIs.tokenAPI, {
-        username: paylood.username,
-        password: paylood.password
+      axios_rec_token.post(store.state.backendAPIs.tokenAPI, {
+        username: payload.username,
+        password: payload.password
       })
         .then(res => {
           localStorage.setItem(store.state.localTokenName, res.data.token)
@@ -56,6 +56,7 @@ export default {
           })
       
       // If the token is required and athenticated, jump to the main page.
+      // console.log(store.getters.isAuthenticated)
       if (store.getters.isAuthenticated) {
         router.push('/')
       }
