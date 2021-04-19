@@ -6,10 +6,10 @@
   <!-- A great trick for list transtion is here! Use abosulte while leaving!!! -->
   <!-- Also the drop content has to be as the same width as the parent block -->
   <transition 
-  enter-active-class="transition duration-700 ease-out"
+  enter-active-class="transition duration-500 ease-out"
   enter-from-class="opacity-0 scale-75"
   enter-to-class="opacity-100 scale-100"
-  leave-active-class="transition duration-500 ease-in absolute max-w-2xl"
+  leave-active-class="transition duration-300 ease-in absolute max-w-2xl"
   leave-from-class="opacity-100 scale-100"
   leave-to-class="opacity-0 scale-50">
     <div v-if="showDetail"

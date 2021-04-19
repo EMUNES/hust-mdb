@@ -6,7 +6,7 @@
     
     <!-- Material list with list transition -->
     <transition-group 
-    enter-active-class="transition duration-1000 ease-out"
+    enter-active-class="transition duration-500 ease-out"
     enter-from-class="opacity-0 scale-90"
     enter-to-class="opacity-100 scale-100"
     move-class="transition duration-500 ease-linear">

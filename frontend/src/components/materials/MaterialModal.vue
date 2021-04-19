@@ -4,7 +4,7 @@
   </div>
 
   <transition
-  enter-active-class="transition duration-700 ease-in-out"
+  enter-active-class="transition duration-500 ease-in-out"
   enter-from-class="opacity-0 scale-75"
   enter-to-class="opacity-100 scale-100"
   leave-active-class="transition duration-500 ease-in-out"

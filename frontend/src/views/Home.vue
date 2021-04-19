@@ -20,7 +20,7 @@
         </transition>
 
         <transition appear
-        enter-active-class="transition delay-1500 duration-2000 ease-out"
+        enter-active-class="transition delay-1000 duration-1500 ease-out"
         enter-from-class="opacity-0 scale-90 transform traslate-x-24"
         enter-class="opacity-100 scale-100">
           <div class="content-body mt-10">

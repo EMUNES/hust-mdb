@@ -4,10 +4,10 @@
   </div>
   
   <transition
-  enter-active-class="transition duration-500 ease-in"
-  enter-from-class="opacity-0 scale-60"
+  enter-active-class="transition duration-300 ease-in"
+  enter-from-class="opacity-0 scale-75"
   enter-to-class="opcaity-100 scale-100"
-  leave-active-class="transistion duration-500 ease-out"
+  leave-active-class="transistion duration-300 ease-out"
   leave-from-class="opacity-90 scale-100"
   leave-to-class="opacity-0 scale-60">
     <div  v-if="showing"

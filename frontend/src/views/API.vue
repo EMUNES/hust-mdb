@@ -2,7 +2,7 @@
   <common-layout>
     <template #content>
       <transition appear
-      enter-active-class="transition duration-1000 ease-out"
+      enter-active-class="transition duration-500 ease-out"
       enter-from-class="opacity-10"
       enter-to-class="opacity-100">
         <div class="flex flex-col text-left mt-10 ml-10 lg:ml-20">
