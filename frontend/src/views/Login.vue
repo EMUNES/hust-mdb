@@ -55,16 +55,14 @@ export default {
       })
         .then(res => {
           localStorage.setItem(store.state.localTokenName, res.data.token)
+          // If the token is required and athenticated, jump to the main page.
+          if (store.getters.isAuthenticated) {
+            router.push('/')
+          }
         })
           .catch(err => {
             console.log(err)
           })
-      
-      // If the token is required and athenticated, jump to the main page.
-      // console.log(store.getters.isAuthenticated)
-      if (store.getters.isAuthenticated) {
-        router.push('/')
-      }
     }
 
     return {
