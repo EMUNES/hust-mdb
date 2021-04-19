@@ -5,7 +5,12 @@
   enter-to-class="opacity-100 scale-100">
     <div class="bg-hust-bg-full bg-cover">
       <header class="fixed my-10 mx-10 text-3xl">
-        华中科技大学
+        <div class="text-left">
+          华中科技大学
+        </div>
+        <div class="text-xl my-5">
+          热塑性材料信息数据库
+        </div>
       </header>
 
       <div class="flex flex-col items-center justify-center h-screen w-2/3 md:m-auto max-w-3xl">

@@ -150,7 +150,7 @@ export default {
 
     // Delete material instance.
     const makeDelete = (payload) => {
-      const del = confirm("确定删除该项材料数据吗？\n\n您的操作不可挽回。")
+      const del = confirm("确定删除该项材料数据吗？\n\n您的操作不可挽回")
 
       if (del) {
         axios.delete(store.state.backendAPIs.coreAPI + payload.targetID + '/')
