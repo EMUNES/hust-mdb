@@ -113,7 +113,7 @@
           </span>
         </div>
       </div>
-      <div class="grid grid-cols-2 items-start bg-blue-50 border-b-2 border-gray-300">
+      <div class="grid grid-cols-2 items-start bg-blue-100 border-b-2 border-gray-300">
         <button class="detail-param-info" @click="togglePhy">
           <div class="head">
             <span class="params-title">
@@ -500,7 +500,7 @@ export default {
 }
 
 .detail-param-info {
-  @apply bg-gray-50 mx-14 my-2 rounded;
+  @apply bg-white mx-14 my-2 rounded;
 }
 
 .params {
@@ -516,6 +516,6 @@ export default {
 }
 
 .param-value {
-  @apply px-1;
+  @apply px-1 text-blue-700;
 }
 </style>
