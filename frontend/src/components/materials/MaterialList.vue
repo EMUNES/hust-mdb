@@ -1,5 +1,5 @@
 <template>
-  <div class="list bg-gray-50 m-auto max-w-3xl rounded-xl">
+  <div class="list m-auto max-w-3xl rounded-xl">
     <div class="text-xl py-5">
       热塑性材料信息表
     </div>
@@ -13,7 +13,7 @@
       <div v-for="eventInfo in events" :key="eventInfo">
         <material-detail :eventDetail="eventInfo" :detailId="detailId" v-bind="$attrs">
           <!-- Brief introduction for materials shown in the list. -->
-          <div class="flex justify-between items-center border-2 border-gray-300 rounded-xl my-3 mx-12">
+          <div class="flex justify-between items-center border-2 border-gray-400 rounded-lg my-3 mx-12">
             <div class="id xl w-10">
               <span>{{ eventInfo.id }}</span>
             </div>
@@ -31,10 +31,11 @@
                 <p>{{ eventInfo.material_type }}</p>
               </div>
             </div>
-            <button class="m-5" @click="toggleDetail">
-              <span class="sr-only">More Content</span>
-              <svg class="inline w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            <button @click="toggleDetail"
+             class="m-4 p-1 bg-gray-50 rounded border-gray-300 border-b-2 border-r-2" >
+              <span class="sr-only">Content</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
               </svg>
             </button>
           </div>

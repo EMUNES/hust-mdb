@@ -74,13 +74,13 @@
           class="filter-input">
         </div>
       </form>
-      <div class="text-center">
+      <div class="text-center my-2">
         <button @click.prevent="submitThis" aria-label="submit"
-        class="mr-10 border-2 py-1 px-2 border-blue-200 my-2 rounded-xl">
+        class="mr-10 bg-gray-500 rounded text-white py-1 px-2 my-2">
           确定
         </button>
         <button @click.prevent="closeThis" aria-label="close"
-        class="ml-10 border-2 py-1 px-2 border-red-200 my-2 rounded-xl">
+        class="ml-10 bg-gray-500 rounded text-white py-1 px-2 my-2">
           取消
         </button>
       </div>
