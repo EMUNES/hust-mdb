@@ -27,7 +27,5 @@ If you don't have an account to login, you can create your own superuser using t
 
 ## Important notices for potential bugs and breakdowns
 
-- An local database mutation (hell know where from) will break the token authentication for the project, causing users unable to login no matter in frontend or backend. To avoid such "accidents" happen again and disable the login system, **always test login functionality before you push your code to github especially when git shows that your local sqlite3 database file is *modified***. --- 2021.4.18.
-
 
 
