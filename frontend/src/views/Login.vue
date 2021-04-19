@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-hust-bg-full bg-cover">
     <header class="fixed my-10 mx-10 text-3xl">
       华中科技大学
     </header>
@@ -14,7 +14,7 @@
           注册
         </button>
       </div>
-      <login-form @login-submit="login">
+      <login-form @login-submit="login" class="opacity-90">
 
       </login-form>
     </div>

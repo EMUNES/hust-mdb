@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: theme => ({
-        'head-background': "url('./src/assets/hust-background.jpg')"
+        'head-background': "url('./src/assets/hust-background.jpg')",
+        'hust-bg-full': "url('./src/assets/hust-bg-full.png')"
       }),
       transitionDuration: {
         '1500': '1500ms',
