@@ -1,5 +1,5 @@
 <template>
-  <div class="list m-auto max-w-3xl rounded-xl">
+  <div class="list m-auto max-w-4xl rounded-xl">
     <div class="text-xl py-5">
       热塑性材料信息表
     </div>

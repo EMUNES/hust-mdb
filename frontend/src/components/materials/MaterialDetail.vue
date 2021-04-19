@@ -5,11 +5,11 @@
   <!-- Detailed information for the drop page. -->
   <!-- A great trick for list transtion is here! Use abosulte while leaving!!! -->
   <!-- Also the drop content has to be as the same width as the parent block -->
-  <transition 
+  <transition
   enter-active-class="transition duration-500 ease-out"
   enter-from-class="opacity-0 scale-75"
   enter-to-class="opacity-100 scale-100"
-  leave-active-class="transition duration-300 ease-in absolute max-w-2xl"
+  leave-active-class="transition duration-300 ease-out absolute max-w-3xl"
   leave-from-class="opacity-100 scale-100"
   leave-to-class="opacity-0 scale-50">
     <div v-if="showDetail"
