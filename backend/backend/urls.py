@@ -36,3 +36,8 @@ urlpatterns += [
 urlpatterns += [
     path('api-token-auth/', views.obtain_auth_token)
 ]
+
+# API for machine learning application.
+urlpatterns += {
+    path("ml/", include("ml.urls"))
+}
