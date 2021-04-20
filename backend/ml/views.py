@@ -12,7 +12,7 @@ from ml.config import Conf
 
 class SimAnalysisView(View):
     
-    def _extract_data(self,) -> np.ndarray:
+    def _extract_data(self) -> np.ndarray:
         """Extract numerical data for data analysis.
         
         The data generated here should be able to be directly used
