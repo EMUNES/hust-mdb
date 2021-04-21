@@ -3,6 +3,7 @@
   class="fixed z-40 inset-0 opacity-25 bg-black">
   </div>
 
+  //TODO: Fix the bug that newly created instance with a primary key null.
   <transition
   enter-active-class="transition duration-500 ease-in-out"
   enter-from-class="opacity-0 scale-75"

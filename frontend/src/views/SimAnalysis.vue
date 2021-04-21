@@ -1,5 +1,6 @@
 <template>
   <common-layout>
+    //TODO: Add proper view for data comparison and visualization.
     <template #content>
       <transition appear
       enter-active-class="transition duration-300 ease-out"
@@ -72,7 +73,7 @@
                 如：输入0代表id为0（非材料ID）的材料数据对象
               </small>
               <small class="block text-gray-500 my-1">
-                注：你可以在<span class="font-semibold">资源信息表单</span>页面查询你所需要的材料id
+                注：你可以在<span class="font-semibold">资源信息表单</span>页面查询你所需要的id
               </small>
               <small class="block text-gray-500 my-1">
                 注：没有你想要匹配的数据？先在<span class="font-semibold">资源信息表单</span>添加你的数据吧~
