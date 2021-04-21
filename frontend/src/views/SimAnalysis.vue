@@ -93,10 +93,9 @@ export default {
     const results = ref([])
 
     // Get similarity analysis result from backend.
-    const getSimAnalysis = () => {
-      results.value = []
-      axios_no_token.get(store.state.backendAPIs.simAnalysisAPI + materialPk.value)
-        .then(res => {
+    const getSimAnalysis = async () => {
+      await axios_no_token.get(store.state.backendAPIs.simAnalysisAPI + materialPk.value)
+        .then(async res => {
           // All needed data.
           for (let result of res.data.data_results) {
             const mat_pk = result[0]
@@ -108,7 +107,8 @@ export default {
             // Get material similarity score.
             mat_result.score = mat_score
             // Get material corresponding data.
-            axios.get(store.state.backendAPIs.coreAPI + mat_pk)
+            // Use await here to avoid asynchronization so data will be required.
+            await axios.get(store.state.backendAPIs.coreAPI + mat_pk)
               .then(res => {
                 mat_result.data = res.data
               })
@@ -116,7 +116,6 @@ export default {
             // Add to final results.
              results.value.push(mat_result)
           }
-          console.log(results.value)
         })
     }
 
