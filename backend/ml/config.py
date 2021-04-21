@@ -11,7 +11,7 @@ class pcaConf(object):
         batch_size: Batches of data for IncrementalPCA to handle altogether.
     """
     
-    components = 8 
+    components = 12 
     
     batches = 16
     

@@ -57,6 +57,7 @@
           enter-to-class="opacity-100 scale-100">
           <h2 class="text-xl font-sans font-semibold mb-3 pb-3 border-b-2 border-blue-400">
             数据匹配结果
+            <p class="text-sm text-gray-500">算法耗时请见控制台</p>
           </h2>
           </transition>
 
@@ -89,6 +90,7 @@
         leave-to-class="opacity-0, scale-60">
           <div v-for="result in results" :key="result"
           class="results flex flex-row items-center justify-between my-2">
+            
             <div class="score text-left font-sans">
               离散度(欧式距离):
               <p class="font-semibold text-blue-600">{{ result.score }}</p>
@@ -156,6 +158,7 @@ export default {
 
     // Get similarity analysis result from backend.
     const getSimAnalysis = async () => {
+      console.time("算法耗时")
       results.value = []
       resultsDone.value = false
       await axios_no_token.get(store.state.backendAPIs.simAnalysisAPI + materialPk.value)
@@ -182,6 +185,7 @@ export default {
           }
         })
       resultsDone.value = true
+      console.timeEnd("算法耗时")
     }
 
     const clear = () => {
