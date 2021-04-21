@@ -7,7 +7,19 @@ from sklearn.preprocessing import StandardScaler, Normalizer
 
 from core.models import Material
 from ml.pca.works import run_kernel_pca
-from ml.config import Conf
+from ml.config import Conf, pcaConf
+
+
+class PreView(View):
+    """Return machine learning params.
+    """
+    
+    def get(self, request):
+        return JsonResponse({
+            "components": pcaConf.components,
+            "batches": pcaConf.batches,
+            "results_num": Conf.results_num
+        })
 
 
 class SimAnalysisView(View):
@@ -136,7 +148,7 @@ class SimAnalysisView(View):
         results.sort(key=lambda x:x[1])
             
         return JsonResponse({
-            "data": results[:Conf.results_num], # Material data in json format
+            "data_results": results[:Conf.results_num], # Material data in json format
             "data_returned_num": Conf.results_num, # Returned data numbers.
             "data_total_num": len(mats_data_reducted), # length of materials in analysis
             "data_reducted_dim": len(mats_data_reducted[0]) # Reducted data dimention

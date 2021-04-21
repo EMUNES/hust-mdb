@@ -35,7 +35,7 @@
 import LoginForm from '../components/auth/LoginForm.vue';
 import RegisterForm from '../components/auth/RegisterForm.vue';
 import Logout from '../components/auth/Logout.vue';
-import axios_rec_token from '../request/axios_rec_token.js';
+import axios_no_token from '../request/axios_no_token.js';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
@@ -54,7 +54,7 @@ export default {
 
     const login = (payload) => {
       // Try to require token.
-      axios_rec_token.post(store.state.backendAPIs.tokenAPI, {
+      axios_no_token.post(store.state.backendAPIs.tokenAPI, {
         username: payload.username,
         password: payload.password
       })

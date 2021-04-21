@@ -31,6 +31,9 @@ export default createStore({
       loginAPI: 'http://127.0.0.1:8000/api-auth/login/',
       // API for token.
       tokenAPI: 'http://127.0.0.1:8000/api-token-auth/',
+      // API for similarity analysis.
+      mlAPI: 'http://127.0.0.1:8000/ml/',
+      simAnalysisAPI: 'http://127.0.0.1:8000/ml/sim/',
       // Site managers.
       admin: '',
       responser: ''

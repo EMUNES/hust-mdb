@@ -5,6 +5,7 @@ import Materials from '../views/Materials.vue';
 import Login from '../views/Login.vue';
 import API from '../views/API.vue';
 import Contact from '../views/Contact.vue';
+import SimAnalysis from '../views/SimAnalysis.vue';
 
 const history = createWebHistory()
 
@@ -33,6 +34,11 @@ const routes = [
         path: '/contact',
         name: 'Contact',
         component: Contact
+    },
+    {
+        path: '/sim-analysis',
+        name: 'SimAnalysis',
+        component: SimAnalysis
     }
 ]
 
