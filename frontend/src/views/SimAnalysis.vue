@@ -1,6 +1,6 @@
 <template>
   <common-layout>
-    //TODO: Add proper view for data comparison and visualization.
+    <!-- TODO: Add proper view for data comparison and visualization. -->
     <template #content>
       <transition appear
       enter-active-class="transition duration-300 ease-out"
