@@ -5,19 +5,19 @@
       enter-active-class="transition duration-300 ease-out"
       enter-from-class="opacity-0 scale-75"
       enter-to-class="opacity-100 scale-100">
-        <div class="flex flex-col items-center justify-around w-4/5 m-auto my-10 ml-20 border-2 border-blue-400">
+        <div class="flex flex-col items-center justify-around my-10 w-2/3 m-auto border-2 border-blue-400 rounded-md">
           <div class="conf">
-            <form class="mt-5">
-              <h1 class="font-semibold">
-                当前参数设置
-              </h1>
+            <h1 class="font-semibold mt-3 text-center">
+              当前参数设置
+            </h1>
+            <form class="mt-3 flex flex-col xl:flex-row items-center justify-center">
               <div class="my-2 px-2 rounded-lg">
-                <label for="compoents" class="text-left font-thin">降维参数纬度: </label>
+                <label for="compoents" class="text-left font-thin font">降维参数纬度: </label>
                 <input type="text" v-model="components" :placeholder="components"
                 class="w-10 outline-none rounded-lg px-1">
               </div>
               <div class="my-2px-2 rounded-lg">
-                <label for="resultsNum" class="text-left font-light">输出结果数量: </label>
+                <label for="resultsNum" class="text-left font-thin">输出结果数量: </label>
                 <input type="text" v-model="resultsNum" :placeholder="resultsNum"
                 class="outline-none w-10 rounded-lg px-1">
               </div>
@@ -67,11 +67,14 @@
           <div v-show="!results">
             <p>
               请输入材料数据编号（主键）以获取数据匹配结果
-              <small class="block text-gray-500">
+              <small class="block text-gray-500 my-1">
                 如：输入0代表id为0（非材料ID）的材料数据对象
               </small>
-              <small class="block text-gray-500">
-                你可以在<span class="font-semibold">资源信息表单</span>页面查询你所需要的材料id
+              <small class="block text-gray-500 my-1">
+                注：你可以在<span class="font-semibold">资源信息表单</span>页面查询你所需要的材料id
+              </small>
+              <small class="block text-gray-500 my-1">
+                注：没有你想要匹配的数据？先在<span class="font-semibold">资源信息表单</span>添加你的数据吧~
               </small>
             </p>
           </div>
