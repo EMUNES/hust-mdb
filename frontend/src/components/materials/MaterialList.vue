@@ -34,7 +34,6 @@
             </div>
             <button @click="toggleDetail"
              class="m-4 p-1 bg-gray-50 rounded border-gray-300 border-b-2 border-r-2" >
-              <span class="sr-only">Content</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M3 7a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 13a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
               </svg>
@@ -66,7 +65,10 @@ export default {
 
     const toggleDetail = (e) => {
       if (detailId.value == -1) {
-        detailId.value = e.path[2].children[0].innerText
+        // Tricky bug here. Vue event sometimes will send event with <path></path> html in it.
+        // Make the locating of the id uncertain.
+        // Solved by try move to the outer element if the id does not exist.
+        detailId.value = e.path[2].children[0].innerText ? e.path[2].children[0].innerText: e.path[3].children[0].innerText
       }
       else {
         detailId.value = -1
