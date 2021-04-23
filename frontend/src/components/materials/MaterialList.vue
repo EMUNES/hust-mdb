@@ -4,7 +4,6 @@
       热塑性材料信息表
     </div>
     
-    <!-- TODO: Fix the problem that sometime click detail button with no response. -->
     <!-- Material list with list transition -->
     <transition-group 
     enter-active-class="transition duration-500 ease-out"
