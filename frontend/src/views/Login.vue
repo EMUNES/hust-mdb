@@ -23,7 +23,7 @@
             注册
           </button>
         </div>
-        <login-form @login-submit="login" class="opacity-90">
+        <login-form @login-submit="login" v-model:hasError="loginError" class="opacity-90">
 
         </login-form>
       </div>
@@ -48,7 +48,7 @@ export default {
     Logout
   },
   setup() {
-    const currentLogin = ref(true)
+    const loginError = ref(false)
     const store = useStore()
     const router = useRouter()
 
@@ -59,6 +59,7 @@ export default {
         password: payload.password
       })
         .then(res => {
+          loginError.value = false
           localStorage.setItem(store.state.localTokenName, res.data.token)
           // If the token is required and athenticated, jump to the main page.
           if (store.getters.isAuthenticated) {
@@ -66,12 +67,13 @@ export default {
           }
         })
           .catch(err => {
+            loginError.value = true
             console.log(err)
           })
     }
 
     return {
-      currentLogin,
+      loginError,
       login
     }
   }

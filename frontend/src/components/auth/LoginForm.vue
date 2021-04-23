@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="submitLogin"
-  class="bg-blue-50 px-5 py-3 w-2/3 rounded-xl">
+  <form @submit.prevent="submitLogin" @reset.prevent="cancelLogin"
+  class="bg-blue-50 px-5 py-3 w-2/3 rounded-xl" :class="{'border border-red-500': hasError}">
     <div class="login-form-field">
       <svg t="1617366349414" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6273" width="200" height="200"
       class="login-form-input-icon">
@@ -18,14 +18,26 @@
       <input type="text" v-model="password" placeholder="密码" class="login-form-input">
     </div>
 
+    <transition
+    enter-active-class="transition duration-200 ease-out"
+    enter-from-class="opacity-0 scale-75"
+    enter-to-class="opacity-100 scale-100"
+    leave-active-class="transition duration-200 ease-in"
+    leave-from-class="opacity-100 scale-100"
+    leave-to-class="opacity-0 scale-100">
+      <div v-if="hasError">
+        <small class="text-red-400 text-xs">登陆失败，请检查您的账号和密码是否正确</small>
+      </div>
+    </transition>
+
     <div class="flex justify-around flex-wrap mt-10 mb-3">
       <button type="submit"
-      class="bg-blue-400 text-white px-5 py-1">
+      class="bg-blue-400 text-white px-5 py-1 hover:bg-blue-600 transition duration-200 ease-linear">
         登录
       </button>
 
-      <button @click="cancelLogin"
-      class="bg-blue-200 px-5 py-1">
+      <button type="reset"
+      class="bg-blue-200 px-5 py-1 hover:bg-yellow-300 transition duration-200 ease-linear">
         取消
       </button>
     </div>
@@ -33,11 +45,21 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, toRef } from 'vue'
 
 export default {
   name: 'LoginForm',
-  setup(_, context) {
+  props: {
+    hasError: {
+      type: Boolean,
+    }
+  },
+  emits: [
+    "loginSubmit",
+    "update:hasError"
+  ],
+  setup(props, context) {
+    const hasError = toRef(props, "hasError")
     const username = ref('')
     const password = ref('')
 
@@ -51,6 +73,7 @@ export default {
     const cancelLogin = () => {
       username.value = ''
       password.value = ''
+      context.emit("update:hasError", false)
     }
 
     return {
@@ -58,6 +81,7 @@ export default {
       password,
       submitLogin,
       cancelLogin,
+      hasError
     }
   }
 }
