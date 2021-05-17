@@ -15,12 +15,28 @@
               <div class="my-2 px-2 rounded-lg">
                 <label for="compoents" class="text-left font-thin font">降维参数纬度: </label>
                 <input type="text" v-model="components" :placeholder="components"
-                class="w-10 outline-none rounded-lg px-1">
+                class="w-10 outline-none px-1 border-b-2 border-r-2 rounded border-blue-400">
               </div>
-              <div class="my-2px-2 rounded-lg">
+              <div class="px-2 rounded-lg">
                 <label for="resultsNum" class="text-left font-thin">输出结果数量: </label>
                 <input type="text" v-model="resultsNum" :placeholder="resultsNum"
-                class="outline-none w-10 rounded-lg px-1">
+                class="outline-none w-10 px-1 border-b-2 border-r-2 rounded border-blue-400">
+              </div>
+              <div class="my-2 px-2 rounded-lg mt-2 xl:flex xl:flex-row border-2 border-blue-400 py-1 xl:border-b-2">
+                <p class="text-center xl:mr-5">参数范围: </p>
+                <form class="flex flex-col items-start xl:flex-row">
+                  <div>
+                    <input type="radio" name="pr" id="allParameters" value="all" v-model="params" checked="checked"
+                    class="outline-none w-10 rounded-lg px-1">
+                    <label for="allParameters" class="text-left text-sm font-thin">全部参数（45项）</label>
+                  </div>
+                  <div class="xl:px-5">
+                    <input type="radio" name="pr" id="impParameters" value="imp" v-model="params"
+                    class="outline-none w-10 rounded-lg px-1">
+                    <label for="impParameters" class="text-left text-sm font-thin">仅PVT及七参数（20项）
+                    </label>
+                  </div>
+                </form>
               </div>
             </form>
           </div>
@@ -156,13 +172,18 @@ export default {
     const materialPk = ref(null)
     const results = ref(null)
     const resultsDone = ref(true)
+    const params = ref('all')
 
     // Get similarity analysis result from backend.
     const getSimAnalysis = async () => {
       console.time("算法耗时")
       results.value = []
       resultsDone.value = false
-      await axios_no_token.get(store.state.backendAPIs.simAnalysisAPI + materialPk.value)
+      await axios_no_token.get(store.state.backendAPIs.simAnalysisAPI + 
+      materialPk.value + 
+      `/&params=${params.value}` + 
+      `&target_results=${resultsNum.value}` + 
+      `&components=${components.value}`)
         .then(async res => {
           // All needed data.
           for (let result of res.data.data_results) {
@@ -212,6 +233,7 @@ export default {
       components,
       resultsNum,
       materialPk,
+      params,
       getSimAnalysis,
       results,
       resultsDone,

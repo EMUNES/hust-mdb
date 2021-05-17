@@ -99,6 +99,57 @@ class SimAnalysisView(View):
         mat_arrays = np.array(mat_arrays, dtype=np.float64)
         
         return mat_arrays
+    
+    def _extract_imp_data(self) -> np.ndarray:
+        """Extract PVT and 7-Param data for data analysis.
+        
+        Only extract the most important features, which are PVT data and
+        7-Param data for machine learning algorithm.
+        
+        Computational data for machine learning:
+            type: ndarray.
+            format: rows(instances) x columns(features), 2-D array.
+            
+        Returns:
+            mat_arrays: Material data in ndarray format.
+        """
+        
+        mats = Material.objects.all()
+        
+        mat_arrays = []
+        for mat in mats: # django queryset -> python list
+            mat_features = []
+            
+            # Add data
+            # Some data are missing here.
+            #TODO: Delete those if sentences after cleaning the data.
+            mat_features.append(mat.pvt_b5 if mat.pvt_b5!=None else 0)
+            mat_features.append(mat.pvt_b6 if mat.pvt_b6!=None else 0)
+            mat_features.append(mat.pvt_b1m if mat.pvt_b1m!=None else 0)
+            mat_features.append(mat.pvt_b2m if mat.pvt_b2m!=None else 0)
+            mat_features.append(mat.pvt_b2m if mat.pvt_b2m!=None else 0)
+            mat_features.append(mat.pvt_b4m if mat.pvt_b4m!=None else 0)
+            mat_features.append(mat.pvt_b1s if mat.pvt_b1s!=None else 0)
+            mat_features.append(mat.pvt_b2s if mat.pvt_b2s!=None else 0)
+            mat_features.append(mat.pvt_b3s if mat.pvt_b3s!=None else 0)
+            mat_features.append(mat.pvt_b4s if mat.pvt_b4s!=None else 0)
+            mat_features.append(mat.pvt_b7 if mat.pvt_b7!=None else 0)
+            mat_features.append(mat.pvt_b8 if mat.pvt_b8!=None else 0)
+            mat_features.append(mat.pvt_b9 if mat.pvt_b9!=None else 0)
+            mat_features.append(mat.seven_params_n if mat.seven_params_n!=None else 0.)
+            mat_features.append(mat.seven_params_Tau if mat.seven_params_Tau!=None else 0.)
+            mat_features.append(mat.seven_params_D1 if mat.seven_params_D1!=None else 0.)
+            mat_features.append(mat.seven_params_D2 if mat.seven_params_D2!=None else 0.)
+            mat_features.append(mat.seven_params_D3 if mat.seven_params_D3!=None else 0.)
+            mat_features.append(mat.seven_params_A1 if mat.seven_params_A1!=None else 0.)
+            mat_features.append(mat.seven_params_A2 if mat.seven_params_A2!=None else 0.)
+     
+            mat_arrays.append(mat_features)
+            
+        # Get numpy arrays.
+        mat_arrays = np.array(mat_arrays, dtype=np.float64)
+        
+        return mat_arrays
 
     def _preprocess(self, data, normalize=False) -> np.ndarray:
         """Preprocess data after extracted for ml.
@@ -118,7 +169,7 @@ class SimAnalysisView(View):
         
         return data
     
-    def get(self, request, mat_pk):
+    def get(self, request, mat_pk:int, params:str="all", target_results:int=Conf.results_num, components:int=pcaConf.components):
         """Run the data similarity analysis for the project.
         
         After getting a get request, the application run the 
@@ -127,12 +178,15 @@ class SimAnalysisView(View):
         
         # Get data from database and prepocess those data.
         # Preprocess use Standardization or Normalization.
-        mats_data = self._extract_data().tolist() # ndarray 
+        if params == "all":
+            mats_data = self._extract_data().tolist() # ndarray 
+        if params == "imp":
+            mats_data = self._extract_imp_data().tolist()
         mats_data = self._preprocess(mats_data)
         
         # Calling machine learning algorithms to finish similarity anaylys
         # and returns the final result.
-        mats_data_reducted = run_kernel_pca(mats_data) # ndarray
+        mats_data_reducted = run_kernel_pca(mats_data, components=components) # ndarray
         mats_data_reducted = mats_data_reducted.tolist()
         
         # Material instance to compare.
@@ -146,9 +200,9 @@ class SimAnalysisView(View):
             mat_dist_tuple = (mat_idx, mat_dist)
             results.append(mat_dist_tuple)
         results.sort(key=lambda x:x[1])
-            
+                    
         return JsonResponse({
-            "data_results": results[:Conf.results_num], # Material data in json format
+            "data_results": results[:target_results], # Material data in json format
             "data_returned_num": Conf.results_num, # Returned data numbers.
             "data_total_num": len(mats_data_reducted), # length of materials in analysis
             "data_reducted_dim": len(mats_data_reducted[0]) # Reducted data dimention
