@@ -22,7 +22,7 @@
                 <input type="text" v-model="resultsNum" :placeholder="resultsNum"
                 class="outline-none w-10 px-1 border-b-2 border-r-2 rounded border-blue-400">
               </div>
-              <div class="my-2 px-2 rounded-lg mt-2 xl:flex xl:flex-row border-2 border-blue-400 py-1 xl:border-b-2">
+              <div class="my-2 px-2 rounded-lg mt-2 xl:flex xl:flex-row border-2 border-blue-400 py-1 xl:border-b-2 xl:ml-3">
                 <p class="text-center xl:mr-5">参数范围: </p>
                 <form class="flex flex-col items-start xl:flex-row">
                   <div>
