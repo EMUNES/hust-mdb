@@ -27,5 +27,5 @@ If you don't have an account to login, you can create your own superuser using t
 
 ## Important notices for potential bugs and breakdowns
 
-
+- Currently there is a potential bug related to Django & Django REST Framework backend system. This won't affect user experience but could cause some trouble if someone really uses the webpage to add material data (which is seriously deprecated, you should use database tool to add new data to the backend database). See [stack overflow]([Django DRF create new object with primary key "id: null" after axios post method - Stack Overflow](https://stackoverflow.com/questions/66947419/django-drf-create-new-object-with-primary-key-id-null-after-axios-post-method/66948240#66948240)) for possible solutions or give your suggestions, thanks!
 
