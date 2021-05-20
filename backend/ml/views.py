@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.http.response import Http404
 from django.views import View
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.serializers import serialize
@@ -176,37 +177,47 @@ class SimAnalysisView(View):
         data similarity analysis and give back the possible results.
         """
         
-        # Get data from database and prepocess those data.
-        # Preprocess use Standardization or Normalization.
-        if params == "all":
-            mats_data = self._extract_data().tolist() # ndarray 
-        if params == "imp":
-            mats_data = self._extract_imp_data().tolist()
-        mats_data = self._preprocess(mats_data)
-        
-        # Calling machine learning algorithms to finish similarity anaylys
-        # and returns the final result.
-        mats_data_reducted = run_kernel_pca(mats_data, components=components) # ndarray
-        mats_data_reducted = mats_data_reducted.tolist()
-        
-        # Material instance to compare.
-        mat_protocol = mats_data_reducted[mat_pk]
-        mats_data_to_compare = np.delete(mats_data_reducted, mat_pk, 0)
-        
-        # Calculate euclidean distance for each instance and get the best.
-        results = []
-        for mat_idx, mat_data in enumerate(mats_data_to_compare):
-            mat_dist = np.sum(np.square(mat_protocol - mat_data))
-            mat_dist_tuple = (mat_idx, mat_dist)
-            results.append(mat_dist_tuple)
-        results.sort(key=lambda x:x[1])
-                    
-        return JsonResponse({
-            "data_results": results[:target_results], # Material data in json format
-            "data_returned_num": Conf.results_num, # Returned data numbers.
-            "data_total_num": len(mats_data_reducted), # length of materials in analysis
-            "data_reducted_dim": len(mats_data_reducted[0]) # Reducted data dimention
-        })
+        try:
+            mats_id = [x.id for x in Material.objects.all()]
+            
+            # Get data from database and prepocess those data.
+            # Preprocess use Standardization or Normalization.
+            if params == "all":
+                mats_data = self._extract_data().tolist() # ndarray 
+            if params == "imp":
+                mats_data = self._extract_imp_data().tolist()
+            mats_data = self._preprocess(mats_data)
+            
+            # Calling machine learning algorithms to finish similarity anaylys
+            # and returns the final result.
+            mats_data_reducted = run_kernel_pca(mats_data, components=components) # ndarray
+            
+            # Material instance to compare.
+            mat_protocol = mats_data_reducted[mats_id.index(mat_pk)]
+            
+            # Calculate euclidean distance for each instance and get the best.
+            results = []
+            for mat_id, mat_data in zip(mats_id, mats_data_reducted):
+                
+                # Skip the material data to compare.
+                if mat_id ==  mat_pk: continue
+                
+                mat_dist = np.sum(np.square(mat_protocol - mat_data))
+                mat_dist_tuple = (mat_id, mat_dist)
+                results.append(mat_dist_tuple)
+                
+            results.sort(key=lambda x:x[1])
+                        
+            return JsonResponse({
+                "data_results": results[:target_results], # Material data in json format
+                "data_returned_num": Conf.results_num, # Returned data numbers.
+                "data_total_num": len(mats_data_reducted), # length of materials in analysis
+                "data_reducted_dim": len(mats_data_reducted[0]) # Reducted data dimention
+            })
+        except RuntimeError as e:
+            print(e)
+            return Http404("Sorry, the procedures has failed. Check backend for more info")
+            
     
     # TODO: If frontend can implement this function. There is no need to keep post method.
     def post(self, request, mat_pk, conf):
