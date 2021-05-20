@@ -183,9 +183,9 @@ class SimAnalysisView(View):
             # Get data from database and prepocess those data.
             # Preprocess use Standardization or Normalization.
             if params == "all":
-                mats_data = self._extract_data().tolist() # ndarray 
+                mats_data = self._extract_data()
             if params == "imp":
-                mats_data = self._extract_imp_data().tolist()
+                mats_data = self._extract_imp_data()
             mats_data = self._preprocess(mats_data)
             
             # Calling machine learning algorithms to finish similarity anaylys
