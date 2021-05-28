@@ -2,7 +2,7 @@
   <common-layout>
     <template #content>
       <div>
-        <transition appear=""
+        <transition appear
         enter-active-class="transition delay-200 duration-1000 ease-out"
         enter-from-class="opacity-0 scale-90"
         enter-to-class="opacity-100 scale-100">
